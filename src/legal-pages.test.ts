@@ -93,3 +93,18 @@ test("네 HTML 템플릿은 정확히 하나의 SEO 교체 블록을 제공한�
     assert.equal((html.match(/<!-- seo-head:end -->/g) ?? []).length, 1);
   }
 });
+
+test("프로덕션 빌드는 프리렌더 단계를 필수로 실행한다", async () => {
+  const packageJson = JSON.parse(
+    await readFile(new URL("../package.json", import.meta.url), "utf8"),
+  );
+
+  assert.equal(
+    packageJson.scripts.build,
+    "tsc -b && vite build && node scripts/prerender.mjs",
+  );
+  assert.equal(
+    packageJson.scripts.test,
+    "node --test src/*.test.ts scripts/*.test.ts",
+  );
+});
