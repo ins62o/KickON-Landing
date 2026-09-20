@@ -30,6 +30,16 @@ test("replaceRoot는 비어 있거나 중복된 root marker를 거부한다", as
   );
 });
 
+test("replaceRoot는 SSR 마크업의 달러 치환 문자열을 그대로 보존한다", async () => {
+  const { replaceRoot } = await import("./prerender.mjs");
+  const markup = "<p>Prices $& fees $$ and $` notes</p>";
+
+  assert.equal(
+    replaceRoot('<div id="root"></div>', markup),
+    `<div id="root">${markup}</div>`,
+  );
+});
+
 test("replaceSeoHead는 비어 있거나 중복된 marker를 거부한다", async () => {
   const { replaceSeoHead } = await import("./prerender.mjs");
   const block = "<!-- seo-head:start --><title>x</title><!-- seo-head:end -->";

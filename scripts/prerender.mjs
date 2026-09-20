@@ -18,7 +18,7 @@ export function replaceRoot(html, markup) {
     throw new Error("Missing empty root marker");
   }
 
-  return html.replace(EMPTY_ROOT, `<div id="root">${markup}</div>`);
+  return html.replace(EMPTY_ROOT, () => `<div id="root">${markup}</div>`);
 }
 
 export function replaceSeoHead(html, head) {
