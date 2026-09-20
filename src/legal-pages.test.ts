@@ -68,3 +68,13 @@ test("정적 빌드는 세 법적 문서 직접 경로를 입력으로 사용한
   assert.match(config, /privacy\/index\.html/);
   assert.match(config, /account-deletion\/index\.html/);
 });
+
+test("클라이언트는 프리렌더 마크업을 hydrate하고 빈 root만 새로 렌더링한다", async () => {
+  const source = await readFile(new URL("./main.tsx", import.meta.url), "utf8");
+
+  assert.match(source, /import\s*\{\s*createRoot,\s*hydrateRoot\s*\}/);
+  assert.match(source, /root\.hasChildNodes\(\)/);
+  assert.match(source, /hydrateRoot\(root,\s*app\)/);
+  assert.match(source, /createRoot\(root\)\.render\(app\)/);
+  assert.doesNotMatch(source, /document\.title\s*=/);
+});
