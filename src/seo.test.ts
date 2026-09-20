@@ -79,3 +79,16 @@ test("메인 구조화 데이터는 검증 가능한 세 타입과 실제 스토
   assert.equal("aggregateRating" in app, false);
   assert.equal("offers" in app, false);
 });
+
+test("robots와 sitemap은 kickon.kr의 indexable 경로만 공개한다", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const robots = await readFile(new URL("../public/robots.txt", import.meta.url), "utf8");
+  const sitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8");
+
+  assert.match(robots, /^User-agent: \*\nAllow: \/\n\nSitemap: https:\/\/kickon\.kr\/sitemap\.xml\n$/);
+  assert.match(sitemap, /<loc>https:\/\/kickon\.kr\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/kickon\.kr\/terms\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/kickon\.kr\/privacy\/<\/loc>/);
+  assert.doesNotMatch(sitemap, /account-deletion/);
+  assert.doesNotMatch(sitemap, /<lastmod>|<changefreq>|<priority>/);
+});

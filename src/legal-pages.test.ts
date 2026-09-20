@@ -78,3 +78,18 @@ test("클라이언트는 프리렌더 마크업을 hydrate하고 빈 root만 새
   assert.match(source, /createRoot\(root\)\.render\(app\)/);
   assert.doesNotMatch(source, /document\.title\s*=/);
 });
+
+test("네 HTML 템플릿은 정확히 하나의 SEO 교체 블록을 제공한다", async () => {
+  const files = [
+    "../index.html",
+    "../terms/index.html",
+    "../privacy/index.html",
+    "../account-deletion/index.html",
+  ];
+
+  for (const file of files) {
+    const html = await readFile(new URL(file, import.meta.url), "utf8");
+    assert.equal((html.match(/<!-- seo-head:start -->/g) ?? []).length, 1);
+    assert.equal((html.match(/<!-- seo-head:end -->/g) ?? []).length, 1);
+  }
+});
