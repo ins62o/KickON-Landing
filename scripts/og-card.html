@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KickON social preview</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body,
+      .og-card {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        font-family: Pretendard, "Noto Sans KR", Arial, sans-serif;
+        background: #08121e;
+      }
+
+      .og-card {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        align-items: center;
+        padding: 58px 68px;
+        color: #ffffff;
+        background:
+          radial-gradient(circle at 20% 18%, rgba(20, 144, 255, 0.2), transparent 34%),
+          linear-gradient(135deg, #0b1a2a 0%, #08121e 58%, #050c14 100%);
+      }
+
+      .visuals {
+        position: absolute;
+        inset: -150px -50px -170px 490px;
+        z-index: -2;
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        gap: 20px;
+        transform: rotate(-6deg);
+      }
+
+      .visuals img {
+        width: 250px;
+        height: 900px;
+        border: 1px solid rgba(108, 174, 232, 0.24);
+        border-radius: 34px;
+        object-fit: cover;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      }
+
+      .visuals img:nth-child(2) {
+        transform: translateY(78px);
+      }
+
+      .visuals img:nth-child(3) {
+        transform: translateY(-22px);
+      }
+
+      .og-card::after {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        content: "";
+        background:
+          linear-gradient(90deg, rgba(8, 18, 30, 0.99) 0%, rgba(8, 18, 30, 0.94) 38%, rgba(8, 18, 30, 0.48) 68%, rgba(8, 18, 30, 0.68) 100%),
+          linear-gradient(0deg, rgba(3, 9, 16, 0.58), rgba(3, 9, 16, 0.04) 55%, rgba(3, 9, 16, 0.36));
+      }
+
+      .content {
+        width: 700px;
+      }
+
+      .brand-logo {
+        width: 178px;
+        height: auto;
+        display: block;
+        margin-bottom: 46px;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin: 0;
+        font-size: 68px;
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -3.4px;
+        text-wrap: balance;
+      }
+
+      p {
+        margin: 24px 0 0;
+        color: #1490ff;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -1.2px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="og-card" aria-label="KickON 소셜 공유 이미지">
+      <div class="visuals" aria-label="KickON 실제 앱 화면">
+        <img src="/screens/hero-collage/incheon-match.png" alt="KickON 인천 경기 화면" />
+        <img src="/screens/hero-collage/ulsan-community.png" alt="KickON 울산 커뮤니티 화면" />
+        <img
+          src="/screens/hero-collage/suwon-bluewings-match.png"
+          alt="KickON 수원 경기 화면"
+        />
+      </div>
+
+      <div class="content">
+        <img class="brand-logo" src="/branding/kickon-logo.webp" alt="KickON" />
+        <h1>모두를 위한<br />K리그 커뮤니티</h1>
+        <p>경기 일정·순위부터 직관 기록까지</p>
+      </div>
+    </main>
+  </body>
+</html>

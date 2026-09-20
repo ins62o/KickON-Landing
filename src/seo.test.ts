@@ -92,3 +92,12 @@ test("robots와 sitemap은 kickon.kr의 indexable 경로만 공개한다", async
   assert.doesNotMatch(sitemap, /account-deletion/);
   assert.doesNotMatch(sitemap, /<lastmod>|<changefreq>|<priority>/);
 });
+
+test("공유 이미지는 PNG이며 정확히 1200x630이다", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const png = await readFile(new URL("../public/branding/kickon-og.png", import.meta.url));
+
+  assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+});
