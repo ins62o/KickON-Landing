@@ -318,6 +318,21 @@ test("기록 소개는 영문 라벨과 시즌 누적 문구를 노출하지 않
   }
 });
 
+test("히어로 H1은 로고의 한글 브랜드명을 포함한다", async () => {
+  const app = await renderApp();
+
+  try {
+    const h1 = app.html.match(/<h1>([\s\S]*?)<\/h1>/)?.[1] ?? "";
+
+    assert.match(h1, /class="hero-brand-logo"[^>]*alt="킥온 KickON"|alt="킥온 KickON"[^>]*class="hero-brand-logo"/);
+    assert.match(h1, /모두를 위한/);
+    assert.match(h1, /K리그 커뮤니티/);
+    assert.equal(app.html.match(/<h1>/g)?.length, 1);
+  } finally {
+    await app.close();
+  }
+});
+
 test("랜딩은 히어로 다음에 모든 팀을 먼저 보여주고 경기 여정을 이어간다", async () => {
   const app = await renderApp();
 

@@ -26,6 +26,7 @@ const OG_IMAGE = `${SITE_ORIGIN}/branding/kickon-og.png`;
 const APP_STORE_URL = "https://apps.apple.com/kr/app/id6809176002";
 const GOOGLE_PLAY_URL =
   "https://play.google.com/store/apps/details?id=kr.kickon.app";
+const INSTAGRAM_URL = "https://www.instagram.com/kickon.offical/";
 
 const commonOpenGraph = (title: string): SeoDefinition["openGraph"] => ({
   title,
@@ -59,8 +60,10 @@ export const SEO_BY_PATH: Record<SitePath, SeoDefinition> = {
           "@type": "Organization",
           "@id": `${SITE_ORIGIN}/#organization`,
           name: "KickON",
+          alternateName: "킥온",
           url: `${SITE_ORIGIN}/`,
           logo: `${SITE_ORIGIN}/branding/kickon-app-icon.png`,
+          sameAs: [INSTAGRAM_URL, APP_STORE_URL, GOOGLE_PLAY_URL],
         },
         {
           "@type": "MobileApplication",

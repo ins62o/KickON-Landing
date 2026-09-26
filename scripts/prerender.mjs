@@ -57,7 +57,7 @@ function validateAbsoluteStructuredData(structuredData) {
   }
 
   for (const entry of graph) {
-    for (const key of ["@id", "url", "logo", "downloadUrl"]) {
+    for (const key of ["@id", "url", "logo", "downloadUrl", "sameAs"]) {
       if (!(key in entry)) continue;
 
       const values = Array.isArray(entry[key]) ? entry[key] : [entry[key]];

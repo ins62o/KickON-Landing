@@ -80,6 +80,19 @@ test("메인 구조화 데이터는 검증 가능한 세 타입과 실제 스토
   assert.equal("offers" in app, false);
 });
 
+test("Organization은 한글 브랜드명과 공식 채널을 연결한다", () => {
+  const graph = getSeoDefinition("/").structuredData?.["@graph"];
+
+  assert.ok(Array.isArray(graph));
+  const organization = graph[1];
+  assert.equal(organization.alternateName, "킥온");
+  assert.deepEqual(organization.sameAs, [
+    "https://www.instagram.com/kickon.offical/",
+    "https://apps.apple.com/kr/app/id6809176002",
+    "https://play.google.com/store/apps/details?id=kr.kickon.app",
+  ]);
+});
+
 test("robots와 sitemap은 kickon.kr의 indexable 경로만 공개한다", async () => {
   const { readFile } = await import("node:fs/promises");
   const robots = await readFile(new URL("../public/robots.txt", import.meta.url), "utf8");

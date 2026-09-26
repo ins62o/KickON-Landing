@@ -271,15 +271,14 @@ function App() {
 
           <div className="container hero-inner">
             <div className="hero-copy">
-              <img
-                className="hero-brand-logo"
-                src="/branding/kickon-logo.webp"
-                alt="KickON"
-                width="132"
-                height="44"
-              />
-
               <h1>
+                <img
+                  className="hero-brand-logo"
+                  src="/branding/kickon-logo.webp"
+                  alt="킥온 KickON"
+                  width="132"
+                  height="44"
+                />
                 모두를 위한
                 <br />
                 K리그 커뮤니티
