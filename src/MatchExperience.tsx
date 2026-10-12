@@ -1,4 +1,4 @@
-import { CalendarDays, Radio, Users, Trophy } from "lucide-react";
+import { CalendarDays, Radio, Smartphone, Users } from "lucide-react";
 import { PhoneScreen, SceneItem } from "./SceneMotion";
 import { useSceneMotion } from "./useSceneMotion";
 
@@ -30,17 +30,13 @@ export function MatchExperience() {
         </SceneItem>
         <SceneItem progress={progress} start={0.16} className="match-card lineup-card">
           <div className="card-label"><Users size={17} aria-hidden="true" /> 선수 라인업</div>
-          <AppCardImage src="/product/match-lineup-card.webp" alt="킥온 앱에서 캡처한 전북과 포항의 포메이션 및 선발 선수 22명 전체 명단, 예시 경기 데이터" width={724} height={936} />
+          <AppCardImage src="/product/match-lineup-card.webp" alt="킥온 앱에서 캡처한 전북과 포항의 포메이션 및 선발 선수 22명 전체 명단" width={724} height={936} />
         </SceneItem>
-        <SceneItem progress={progress} start={0.22} className="match-app">
+        <SceneItem progress={progress} start={0.22} className="match-card match-app">
+          <div className="card-label"><Smartphone size={17} aria-hidden="true" /> 상세 화면</div>
           <PhoneScreen src="/product/match-detail.webp" alt="실제 킥온 경기 상세 화면, 스코어와 득점 기록 및 라인업" />
-          <p className="screen-caption">KICKON 경기 상세 화면</p>
         </SceneItem>
       </div>
-      <p className="screen-caption">실제 킥온 앱 화면 · 예시 경기 데이터</p>
-      <ul className="match-feature-list" aria-label="경기 정보 기능">
-        <li><CalendarDays aria-hidden="true" />경기 일정</li><li><Radio aria-hidden="true" />결과와 실시간 정보</li><li><Users aria-hidden="true" />선수 라인업</li><li><Trophy aria-hidden="true" />리그 순위</li>
-      </ul>
     </section>
   );
 }

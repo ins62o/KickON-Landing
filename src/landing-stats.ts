@@ -9,11 +9,15 @@ function parseCount(value: unknown): number {
   return count;
 }
 
-export function formatMilestone(count: number): string {
+export function getMilestone(count: number): number {
   parseCount(count);
-  if (count < 10) return String(count);
+  if (count < 10) return count;
   const step = 10 ** Math.max(1, String(count).length - 2);
-  return `${(Math.floor(count / step) * step).toLocaleString("en-US")}+`;
+  return Math.floor(count / step) * step;
+}
+
+export function formatMilestone(count: number): string {
+  return `${getMilestone(count).toLocaleString("en-US")}${count >= 10 ? "+" : ""}`;
 }
 
 export async function fetchLandingStats(config: StatsConfig, signal?: AbortSignal, fetcher: typeof fetch = fetch): Promise<LandingStats> {

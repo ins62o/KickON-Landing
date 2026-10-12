@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { fetchLandingStats, formatMilestone } from "../src/landing-stats.ts";
+import { fetchLandingStats, formatMilestone, getMilestone } from "../src/landing-stats.ts";
 
 const config = { url: "https://test.supabase.co/", publishableKey: "sb_publishable_test" };
 const reply = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
@@ -12,6 +12,15 @@ test("milestones round down without inflating small or boundary counts", () => {
   for (const invalid of [-1, NaN, Infinity, 1.5, Number.MAX_SAFE_INTEGER + 1]) {
     assert.throws(() => formatMilestone(invalid));
   }
+});
+
+test("animation targets use the displayed milestone without exceeding the real total", () => {
+  for (const [count, target] of [[0, 0], [9, 9], [10, 10], [87, 80], [1248, 1200], [9999, 9900], [10000, 10000]] as const) {
+    assert.equal(getMilestone(count), target);
+    assert.ok(getMilestone(count) <= count);
+    assert.equal(formatMilestone(count), `${target.toLocaleString("en-US")}${count >= 10 ? "+" : ""}`);
+  }
+  assert.throws(() => getMilestone(-1));
 });
 
 test("reads both real totals using only the public API key", async () => {

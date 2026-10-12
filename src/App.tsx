@@ -10,7 +10,7 @@ import "./product-sections.css";
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <main className="min-h-screen px-4 py-8 md:px-8 md:py-12">
+      <main className="min-h-screen px-4 pt-4 pb-8 md:px-8 md:pb-12">
         <HeroSection />
         <MarqueeScroller />
         <MatchExperience />

@@ -63,13 +63,13 @@ export function HeroSection() {
 
       <div className="relative z-20 flex-1 px-8 md:px-16 pt-12 md:pt-16 flex flex-col items-start">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={reduceMotion ? false : { y: 18 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[470px]"
+          className="w-full min-w-0"
         >
-          <h1 id="hero-heading" className="font-display text-[clamp(32px,10vw,42px)] md:text-[56px] font-medium tracking-tight leading-[1.08] text-[#0a1b33]">
-            K리그가 일상이<br />되는 순간
+          <h1 id="hero-heading" className="hero-heading font-display font-medium tracking-tight leading-[1.08] text-[#0a1b33]">
+            K리그가 일상이 되는 순간
           </h1>
           <p className="mt-6 max-w-[400px] font-sans text-[14px] md:text-[15px] leading-[1.75] text-[#64748b]">
             경기 소식부터 직관 기록까지<br />
@@ -87,7 +87,7 @@ export function HeroSection() {
                 whileTap={reduceMotion ? undefined : { scale: 0.98 }}
                 transition={{ duration: 0.2 }}
               >
-                <Icon size={19} aria-hidden="true" />
+                <Icon size={21} aria-hidden="true" />
                 <span>{name}</span>
               </motion.a>
             ))}

@@ -15,14 +15,14 @@ export function MarqueeScroller({ className }: { className?: string }) {
         {[0, 1].map((copy) => (
           <div key={copy} className="marquee-copy flex shrink-0 gap-4 pr-4" role="list" aria-hidden={copy === 1 ? true : undefined}>
             {teams.map(({ slug, name, color }) => (
-              <div key={slug} role="listitem" title={name} className="w-40 shrink-0 text-center">
-                <div className="group relative h-24 w-40 flex items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all overflow-hidden">
+              <div key={slug} role="listitem" title={name} className="w-40 shrink-0 cursor-pointer text-center">
+                <div className="group relative h-24 w-40 flex items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-colors overflow-hidden">
                   <div
-                    className="absolute inset-0 scale-150 opacity-0 transition-[transform,opacity] duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
+                    className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
                     style={{ background: `linear-gradient(135deg, ${color}, color-mix(in srgb, ${color} 65%, #0a1b33))` }}
                     aria-hidden="true"
                   />
-                  <img src={`/teams/hero/${slug}.webp`} alt={copy === 0 ? `${name} 엠블럼` : ""} width="160" height="160" decoding="async" className="relative z-10 h-14 w-14 object-contain transition-transform duration-300 group-hover:scale-110" />
+                  <img src={`/teams/hero/${slug}.webp`} alt={copy === 0 ? `${name} 엠블럼` : ""} width="160" height="160" decoding="async" className="relative z-10 h-14 w-14 object-contain" />
                 </div>
                 <p className="mt-3 whitespace-nowrap text-[12px] font-medium leading-5 text-[#0a1b33]">{name}</p>
               </div>

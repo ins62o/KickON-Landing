@@ -1,5 +1,26 @@
 import { useEffect, useState } from "react";
-import { fetchLandingStats, formatMilestone, type LandingStats } from "./landing-stats";
+import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
+import { fetchLandingStats, formatMilestone, getMilestone, type LandingStats } from "./landing-stats";
+
+function AnimatedStat({ count }: { count: number }) {
+  const reduced = useReducedMotion();
+  const target = getMilestone(count);
+  const value = useMotionValue(0);
+  const display = useTransform(value, (latest) => `${Math.floor(latest).toLocaleString("en-US")}${count >= 10 ? "+" : ""}`);
+
+  useEffect(() => {
+    if (reduced) return;
+    const animation = animate(value, target, { duration: 1.8, ease: "easeOut" });
+    return () => animation.stop();
+  }, [value, target, reduced]);
+
+  return (
+    <span className="inline-grid" aria-hidden="true">
+      <span className="invisible col-start-1 row-start-1">{formatMilestone(count)}</span>
+      <motion.span className="col-start-1 row-start-1">{reduced ? formatMilestone(count) : display}</motion.span>
+    </span>
+  );
+}
 
 export function HeroStats() {
   const [stats, setStats] = useState<LandingStats | null>(null);
@@ -29,7 +50,7 @@ export function HeroStats() {
         <div key={label}>
           <dt>{label}</dt>
           <dd aria-label={count == null ? `${label} ${failed || stats ? "현재 조회 불가" : "불러오는 중"}` : `${label} ${formatMilestone(count)} ${unit}`}>
-            {count == null ? <span className="stat-unavailable">—</span> : formatMilestone(count)}
+            {count == null ? <span className="stat-unavailable">—</span> : <AnimatedStat count={count} />}
           </dd>
         </div>
       ))}
