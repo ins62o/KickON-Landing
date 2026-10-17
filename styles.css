@@ -165,7 +165,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
 .logo-face--dark { background: #0d1622; transform: rotateY(180deg); }
 .logo[aria-pressed="true"] .logo-coin { transform: rotateY(180deg); }
 .logo img { width: 72%; height: 72%; object-fit: contain; }
-.logo:hover { transform: scale(1.04); }
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover { transform: scale(1.04); }
+}
 .nav-pill {
   display: flex;
   align-items: stretch;
@@ -194,7 +196,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
   color: var(--nav-text);
   transition: color 0.2s;
 }
-.nav-link:hover { color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover { color: #fff; }
+}
 .nav-link.active { color: #fff; }
 .active::after {
   position: absolute;
@@ -223,7 +227,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
   white-space: nowrap;
   transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
-.sign-in:is(:hover, :focus-visible) { background: rgba(32, 117, 180, 0.42); border-color: #8fd5ff; color: #eaf7ff; box-shadow: 0 0 18px rgba(63, 158, 219, 0.16); transform: translateY(-1px); }
+.sign-in:focus-visible { background: rgba(32, 117, 180, 0.42); border-color: #8fd5ff; color: #eaf7ff; box-shadow: 0 0 18px rgba(63, 158, 219, 0.16); transform: translateY(-1px); }
+@media (hover: hover) and (pointer: fine) {
+  .sign-in:hover { background: rgba(32, 117, 180, 0.42); border-color: #8fd5ff; color: #eaf7ff; box-shadow: 0 0 18px rgba(63, 158, 219, 0.16); transform: translateY(-1px); }
+}
 .menu-toggle { display: none; }
 
 .hero {
@@ -265,8 +272,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
 .a1 { z-index: 1; }
 .a2 { z-index: 2; }
 .a3 { z-index: 4; }
-.trust-row:hover .a1, .trust-row:hover .a3 { transform: translateY(-2px); }
-.trust-row:hover .a2 { transform: translateY(-4px); }
+@media (hover: hover) and (pointer: fine) {
+  .trust-row:hover .a1, .trust-row:hover .a3 { transform: translateY(-2px); }
+  .trust-row:hover .a2 { transform: translateY(-4px); }
+}
 .trust-pill {
   display: inline-flex;
   align-items: center;
@@ -347,7 +356,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
   transition: transform 0.25s var(--ease), box-shadow 0.25s;
 }
 .cta i { font-size: 18px; }
-.cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 0 28px rgba(255,255,255,0.46), 0 0 55px rgba(255,255,255,0.2); }
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 0 28px rgba(255,255,255,0.46), 0 0 55px rgba(255,255,255,0.2); }
+}
 .cta:active, .logo:active, .sign-in:active { transform: scale(0.98); }
 .stats {
   position: relative;
@@ -402,7 +413,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
   .mobile-link { position: relative; display: flex; justify-content: center; align-items: center; min-height: 49px; border-radius: 12px; padding-bottom: 0; font-size: 16px; font-weight: 500; }
   .mobile-link.active { color: #fff; }
   .mobile-link.active::after { bottom: 3px; }
-  .mobile-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  @media (hover: hover) and (pointer: fine) {
+    .mobile-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  }
   .mobile-menu > a { animation: linkIn 0.4s var(--ease) both; animation-delay: calc(0.06s + var(--i) * 0.045s); }
   .mobile-sign-in { display: flex; width: 100%; margin-top: 12px; }
   .mobile-sign-in:focus-visible { outline-color: var(--nav-accent); outline-offset: 3px; }

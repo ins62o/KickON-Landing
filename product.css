@@ -23,15 +23,24 @@
 .feature-selector[aria-pressed=true] .scene-number { color: #70caff; }
 .scene-title { transition: color .2s; font-size: 16px; font-weight: 500; line-height: 1.5; }
 .scene-title small { display: block; color: #bdcddd; font-size: 13px; font-weight: 400; margin-top: 5px; }
-.feature-selector:is(:hover, :focus-visible) .scene-title,
-.feature-selector:is(:hover, :focus-visible) .scene-number { color: #8fd5ff; }
-.feature-selector:is(:hover, :focus-visible) .scene-title small { color: #c5e8ff; }
+.feature-selector:focus-visible .scene-title,
+.feature-selector:focus-visible .scene-number { color: #8fd5ff; }
+.feature-selector:focus-visible .scene-title small { color: #c5e8ff; }
+@media (hover: hover) and (pointer: fine) {
+  .feature-selector:hover .scene-title,
+  .feature-selector:hover .scene-number { color: #8fd5ff; }
+  .feature-selector:hover .scene-title small { color: #c5e8ff; }
+}
 .scene-number, .scene-title small { transition: color .2s; }
 .feature-stores { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 27px; }
 .feature-stores a { font-size: 13px; color: #edf5fc; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; border: 0; background: transparent; transition: transform .2s var(--ease), color .2s; }
-.feature-stores a:is(:hover, :focus-visible) { color: #91d8ff; transform: translateY(-2px); }
+.feature-stores a:focus-visible { color: #91d8ff; transform: translateY(-2px); }
 .feature-stores a i { transition: color .2s; }
-.feature-stores a:is(:hover, :focus-visible) i { color: #91d8ff; }
+.feature-stores a:focus-visible i { color: #91d8ff; }
+@media (hover: hover) and (pointer: fine) {
+  .feature-stores a:hover { color: #91d8ff; transform: translateY(-2px); }
+  .feature-stores a:hover i { color: #91d8ff; }
+}
 .feature-stores i { font-size: 15px; }
 /* Native UI choreography: every scene animates its own elements. */
 .feature-stage { position: relative; width: 100%; min-width: 0; height: min(620px, calc(100dvh - 135px)); min-height: 450px; }
@@ -122,8 +131,8 @@
 .cheer-wave i:nth-child(3n) { animation-delay: -.3s; height: 15px; }.cheer-wave i:nth-child(3n+1) { animation-delay: -.1s; height: 5px; }
 .feature-view[data-playing=false] .motion-piece { animation-play-state: paused; }
 @keyframes calendarReveal { 0%,100% { opacity: 0; transform: translateY(12px); } 8%,94% { opacity: 1; transform: translateY(0); } }
-@keyframes dateSelect { 0%,23%,100% { opacity: 0; transform: scale(.85); } 30%,94% { opacity: 1; transform: scale(1); } }
-@keyframes matchUnfold { 0%,26%,100% { opacity: 0; transform: translateY(24px) scale(.98); } 40%,94% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes dateSelect { 0%,6%,100% { opacity: 0; transform: scale(.85); } 12%,94% { opacity: 1; transform: scale(1); } }
+@keyframes matchUnfold { 0%,10%,100% { opacity: 0; transform: translateY(24px) scale(.98); } 20%,94% { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes indicatorBlink { 50% { opacity: .35; } }
 /* One match story; final score and full-time notice hold until the scene leaves. */
 @keyframes liveBoardReveal { 0% { opacity: 0; transform: translateY(14px); } 8%,100% { opacity: 1; transform: none; } }
@@ -184,11 +193,14 @@
  .feature-selector::after { left: 50%; right: auto; top: auto; bottom: 3px; width: 3px; height: 3px; transform: translateX(-50%); }
  .scene-number { font-size: 12px; padding-top: 0; }
  .goal-word { letter-spacing: 0; }
+ .live-canvas .goal-word { top: 16px; }
  .goal-word > span { display: inline-block; font-size: 36px; transform: scale(calc(1 / var(--motion-scale, 1))); }
  .scene-title { transition: color .2s; font-size: 12px; }
  .scene-title small { display: none; }
  .feature-stores { display: none; }
  .feature-stage { flex: none; height: 530px; min-height: 530px; --motion-scale: .94; }
+ .feature-view[data-scene=community] .feature-stage { height: calc(440px * var(--motion-scale) + 48px); min-height: calc(440px * var(--motion-scale) + 48px); }
+ .community-canvas { top: 0; transform: translateX(-50%) scale(var(--motion-scale)); transform-origin: top center; }
  .schedule-canvas { --schedule-scale: .9; }
  .ticket-view { justify-content: flex-start; padding-top: 20px; }
  .memory-line { height: 220px; margin-top: auto; transform: translateY(-12px); }

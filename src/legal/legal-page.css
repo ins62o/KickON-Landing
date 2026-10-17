@@ -7,7 +7,7 @@
 .policy-heading p { margin: 20px 0 0; color: #c3d2e2; font-size: 15px; line-height: 1.8; }
 .policy-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
 .policy-card { display: flex; flex-direction: column; min-height: 290px; padding: 30px 27px; border: 1px solid #b1cee535; border-radius: 18px; background: #0b1c30d9; transition: transform .25s var(--ease),border-color .25s,background .25s; }
-.policy-card:is(:hover,:focus-visible) { transform: translateY(-5px); background: #102b45; border-color: #85cfff9c; }
+.policy-card:focus-visible { transform: translateY(-5px); background: #102b45; border-color: #85cfff9c; }
 .policy-card-top { display: flex; align-items: center; justify-content: space-between; color: #8fd5ff; }
 .policy-card-top span { font-family: 'Mona12',monospace; font-size: 14px; color: #9cb3cb; }
 .policy-card h2 { margin: 36px 0 14px; font-size: 20px; font-weight: 600; letter-spacing: -.03em; }
@@ -19,7 +19,7 @@
 .legal-skip-link { position: fixed; z-index: 20; top: 10px; left: 10px; padding: 10px 16px; background: #173f60; border: 1px solid #86cfff; border-radius: 8px; transform: translateY(-150%); }
 .legal-skip-link:focus { transform: none; }
 .legal-back-link { display: inline-flex; align-items: center; padding: 12px 0; font-size: 13px; color: #b8d9f1; }
-.legal-back-link:is(:hover,:focus-visible) { color: #fff; }
+.legal-back-link:focus-visible { color: #fff; }
 .legal-main { padding-top: 30px; }
 .legal-document-header { max-width: 900px; }
 .legal-eyebrow { margin: 0 0 15px; color: #9ac8eb; font-size: 11px; letter-spacing: .12em; }
@@ -34,7 +34,7 @@
 .legal-toc > strong { font-size: 13px; color: #d3e7f8; }
 .legal-toc ol { margin: 16px 0 0; padding: 0; list-style: none; }
 .legal-toc a { display: block; padding: 8px 9px; border-radius: 6px; color: #acc2d7; font-size: 12px; line-height: 1.65; }
-.legal-toc a:is(:hover,:focus-visible) { color: #fff; background: #335b7b40; }
+.legal-toc a:focus-visible { color: #fff; background: #335b7b40; }
 .legal-article { min-width: 0; padding: 30px 32px; border: 1px solid #b3d2ed2b; border-radius: 16px; background: #081a2be6; }
 .legal-section { scroll-margin-top: 24px; }
 .legal-section + .legal-section { margin-top: 42px; padding-top: 34px; border-top: 1px solid #a7c7e122; }
@@ -54,8 +54,14 @@
 .legal-table-wrap tr:last-child td { border-bottom: 0; }
 .legal-footer { margin-top: 40px; padding: 26px 12px 0; border-top: 1px solid #a7c7e12b; text-align: center; color: #a9bfd3; }
 .legal-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; font-size: 12px; }
-.legal-footer a:is(:hover,:focus-visible) { color: #fff; }
+.legal-footer a:focus-visible { color: #fff; }
 .legal-footer p { margin: 20px 0 0; font-size: 11px; }
+@media (hover: hover) and (pointer: fine) {
+  .policy-card:hover { transform: translateY(-5px); background: #102b45; border-color: #85cfff9c; }
+  .legal-back-link:hover { color: #fff; }
+  .legal-toc a:hover { color: #fff; background: #335b7b40; }
+  .legal-footer a:hover { color: #fff; }
+}
 @media (max-width: 900px) {
   .policy-card { padding: 26px 20px; }
   .policy-card h2 { font-size: 18px; }
