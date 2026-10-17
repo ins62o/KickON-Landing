@@ -1,5 +1,5 @@
 .sign-in { cursor: pointer; }
-.contact-dialog { color-scheme: dark; width: min(540px,calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid #86caff59; border-radius: 24px; background: #091b2ff7; color: #edf6ff; box-shadow: 0 24px 100px #0009,0 0 40px #1675bc15; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #486780 #0a1d30; }
+.contact-dialog { color-scheme: dark; width: min(540px,calc(100% - 32px)); max-height: calc(100dvh - 40px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); padding: 0; border: 1px solid #86caff59; border-radius: 24px; background: #091b2ff7; color: #edf6ff; box-shadow: 0 24px 100px #0009,0 0 40px #1675bc15; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #486780 #0a1d30; }
 .contact-dialog::backdrop { background: #010b18bf; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .contact-panel { position: relative; padding: 32px; }
 .contact-close { position: absolute; right: 18px; top: 18px; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; color: #b0c8de; background: transparent; cursor: pointer; }
