@@ -96,7 +96,7 @@ const sections: LegalSection[] = [
         <ul>
           <li>계정 삭제: 앱의 <strong>마이페이지 &gt; 설정 &gt; 계정 탈퇴</strong>에서 직접 처리</li>
           <li>개인정보 문의: 앱의 <strong>마이페이지 &gt; 고객 지원 &gt; 1:1 문의</strong> 이용</li>
-          <li>앱을 이용할 수 없는 경우: <a href="/account-deletion/">계정 삭제 요청 안내</a>에 따라 요청</li>
+          <li>앱을 이용할 수 없는 경우: <a href="/account-deletion">계정 삭제 요청 안내</a>에 따라 요청</li>
         </ul>
         <p>본인 확인이 필요한 요청은 계정 소유 여부를 확인한 뒤 처리하며, 법령에서 정한 사유가 있으면 요청이 제한될 수 있습니다.</p>
       </>
@@ -129,7 +129,7 @@ const sections: LegalSection[] = [
     title: "개인정보 보호 문의",
     content: (
       <>
-        <p>개인정보 처리, 권리 행사 또는 피해 구제에 관한 문의는 앱의 1:1 문의에서 <strong>계정</strong> 분류로 접수해 주세요. 계정에 접근할 수 없으면 <a href="/account-deletion/">계정 삭제 요청 안내</a>를 이용할 수 있습니다.</p>
+        <p>개인정보 처리, 권리 행사 또는 피해 구제에 관한 문의는 앱의 1:1 문의에서 <strong>계정</strong> 분류로 접수해 주세요. 계정에 접근할 수 없으면 <a href="/account-deletion">계정 삭제 요청 안내</a>를 이용할 수 있습니다.</p>
         <p>고객지원 이메일: <a href={`mailto:${supportEmail}`}>{supportEmail}</a></p>
         <p>개인정보 침해에 대한 상담이 필요하면 개인정보침해 신고센터(국번 없이 118), 개인정보분쟁조정위원회(1833-6972), 경찰청(국번 없이 182)에 문의할 수 있습니다.</p>
       </>

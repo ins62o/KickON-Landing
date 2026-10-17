@@ -59,3 +59,29 @@ test("passes cancellation to fetch", async () => {
     return reply([]);
   }), { name: "AbortError" });
 });
+
+
+test("server totals use fixed hundreds for members and tens for attendance", () => {
+  for (const [count, step, target, display] of [
+    [1319, 100, 1300, "1,300+"],
+    [1320, 100, 1300, "1,300+"],
+    [1399, 100, 1300, "1,300+"],
+    [1400, 100, 1400, "1,400+"],
+    [999, 100, 900, "900+"],
+    [10799, 100, 10700, "10,700+"],
+    [116, 10, 110, "110+"],
+    [119, 10, 110, "110+"],
+    [120, 10, 120, "120+"],
+    [1319, 10, 1310, "1,310+"],
+    [99, 100, 99, "99"],
+    [9, 10, 9, "9"],
+    [0, 100, 0, "0"],
+  ] as const) {
+    assert.equal(getMilestone(count, step), target);
+    assert.equal(formatMilestone(count, step), display);
+    assert.ok(target <= count);
+  }
+  for (const step of [0, -10, 1.5, NaN, Infinity]) {
+    assert.throws(() => getMilestone(1319, step));
+  }
+});

@@ -7,7 +7,7 @@ import { createServer } from "vite";
 
 test("legal URLs render the restored document, including direct index.html requests", async (t) => {
   const server = await createServer({
-    configFile: false,
+    configFile: false, cacheDir: `/private/tmp/kickon-landing-tests-${process.pid}`,
     appType: "custom",
     plugins: [react()],
     server: { middlewareMode: true, hmr: false, ws: false },
@@ -24,9 +24,9 @@ test("legal URLs render the restored document, including direct index.html reque
       const html = renderToStaticMarkup(createElement(getLegalPage(`/${path}${suffix}`)));
       assert.ok(html.includes(`<h1>${title}</h1>`));
       assert.equal((html.match(/class="legal-section"/g) ?? []).length, sections);
-      assert.match(html, /href="\/privacy\/"/);
-      assert.match(html, /href="\/terms\/"/);
-      assert.match(html, /href="\/account-deletion\/"/);
+      assert.match(html, /href="\/privacy"/);
+      assert.match(html, /href="\/terms"/);
+      assert.match(html, /href="\/account-deletion"/);
     }
   }
   assert.throws(() => getLegalPage("/missing/"), /Unknown legal page/);
@@ -34,7 +34,7 @@ test("legal URLs render the restored document, including direct index.html reque
 
 test("landing footer links only to privacy and terms", async (t) => {
   const server = await createServer({
-    configFile: false,
+    configFile: false, cacheDir: `/private/tmp/kickon-landing-tests-${process.pid}`,
     appType: "custom",
     plugins: [react()],
     server: { middlewareMode: true, hmr: false, ws: false },
@@ -45,8 +45,8 @@ test("landing footer links only to privacy and terms", async (t) => {
   const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/)?.[1];
   assert.ok(footer);
   assert.deepEqual([...footer.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(([, href, label]) => ({ href, label })), [
-    { href: "/privacy/", label: "개인정보처리방침" },
-    { href: "/terms/", label: "이용약관" },
+    { href: "/privacy", label: "개인정보처리방침" },
+    { href: "/terms", label: "이용약관" },
   ]);
   assert.doesNotMatch(footer, /서비스 소개|문의하기/);
 });

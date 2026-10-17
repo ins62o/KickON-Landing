@@ -1,0 +1,146 @@
+[
+  {
+    "id": "sportmonks-19648050",
+    "league_id": "kleague",
+    "home_team_id": "incheon",
+    "away_team_id": "pohang",
+    "home_score": 3,
+    "away_score": 0,
+    "kickoff_at": "2026-10-09T07:30:00+00:00",
+    "round": 31,
+    "stadium_id": "incheon-football-stadium",
+    "home": {
+      "id": "incheon",
+      "name": "인천 유나이티드",
+      "shortName": "인천",
+      "primaryColor": "#2F80ED"
+    },
+    "away": {
+      "id": "pohang",
+      "name": "포항 스틸러스",
+      "shortName": "포항",
+      "primaryColor": "#D71920"
+    },
+    "stadium": "인천축구전용경기장"
+  },
+  {
+    "id": "sportmonks-19648049",
+    "league_id": "kleague",
+    "home_team_id": "seoul",
+    "away_team_id": "jeju",
+    "home_score": 2,
+    "away_score": 1,
+    "kickoff_at": "2026-10-10T05:00:00+00:00",
+    "round": 31,
+    "stadium_id": "seoul-world-cup-stadium",
+    "home": {
+      "id": "seoul",
+      "name": "FC 서울",
+      "shortName": "서울",
+      "primaryColor": "#E84545"
+    },
+    "away": {
+      "id": "jeju",
+      "name": "제주 SK FC",
+      "shortName": "제주",
+      "primaryColor": "#F15A24"
+    },
+    "stadium": "서울월드컵경기장"
+  },
+  {
+    "id": "sportmonks-19648054",
+    "league_id": "kleague",
+    "home_team_id": "incheon",
+    "away_team_id": "daejeon",
+    "home_score": 1,
+    "away_score": 1,
+    "kickoff_at": "2026-09-20T10:00:00+00:00",
+    "round": 30,
+    "stadium_id": "incheon-football-stadium",
+    "home": {
+      "id": "incheon",
+      "name": "인천 유나이티드",
+      "shortName": "인천",
+      "primaryColor": "#2F80ED"
+    },
+    "away": {
+      "id": "daejeon",
+      "name": "대전 하나 시티즌",
+      "shortName": "대전",
+      "primaryColor": "#B03A68"
+    },
+    "stadium": "인천축구전용경기장"
+  },
+  {
+    "id": "sportmonks-19648055",
+    "league_id": "kleague",
+    "home_team_id": "jeonbuk",
+    "away_team_id": "gwangju",
+    "home_score": 2,
+    "away_score": 2,
+    "kickoff_at": "2026-09-20T07:30:00+00:00",
+    "round": 30,
+    "stadium_id": "jeonju-world-cup-stadium",
+    "home": {
+      "id": "jeonbuk",
+      "name": "전북 현대",
+      "shortName": "전북",
+      "primaryColor": "#00A878"
+    },
+    "away": {
+      "id": "gwangju",
+      "name": "광주 FC",
+      "shortName": "광주",
+      "primaryColor": "#E7B900"
+    },
+    "stadium": "전주월드컵경기장"
+  },
+  {
+    "id": "sportmonks-19648053",
+    "league_id": "kleague",
+    "home_team_id": "pohang",
+    "away_team_id": "seoul",
+    "home_score": 2,
+    "away_score": 1,
+    "kickoff_at": "2026-09-20T10:00:00+00:00",
+    "round": 30,
+    "stadium_id": "sangju-civic-stadium",
+    "home": {
+      "id": "pohang",
+      "name": "포항 스틸러스",
+      "shortName": "포항",
+      "primaryColor": "#D71920"
+    },
+    "away": {
+      "id": "seoul",
+      "name": "FC 서울",
+      "shortName": "서울",
+      "primaryColor": "#E84545"
+    },
+    "stadium": "상주시민운동장"
+  },
+  {
+    "id": "sportmonks-19648052",
+    "league_id": "kleague",
+    "home_team_id": "daejeon",
+    "away_team_id": "jeonbuk",
+    "home_score": 2,
+    "away_score": 1,
+    "kickoff_at": "2026-10-09T05:00:00+00:00",
+    "round": 31,
+    "stadium_id": "sportmonks-venue-3718",
+    "home": {
+      "id": "daejeon",
+      "name": "대전 하나 시티즌",
+      "shortName": "대전",
+      "primaryColor": "#B03A68"
+    },
+    "away": {
+      "id": "jeonbuk",
+      "name": "전북 현대",
+      "shortName": "전북",
+      "primaryColor": "#00A878"
+    },
+    "stadium": "대전월드컵경기장"
+  }
+]

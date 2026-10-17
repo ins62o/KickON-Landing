@@ -26,3 +26,9 @@ supabase/.temp/
 *.njsproj
 *.sln
 *.sw?
+
+# Mail/server secrets
+.env
+.env.production
+supabase/functions/.env*
+!supabase/functions/.env.example

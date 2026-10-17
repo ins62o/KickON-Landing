@@ -8,7 +8,7 @@ import { createServer } from "vite";
 
 async function createTestServer() {
   return createServer({
-    configFile: false,
+    configFile: false, cacheDir: `/private/tmp/kickon-landing-tests-${process.pid}`,
     appType: "custom",
     plugins: [react()],
     server: { middlewareMode: true, hmr: false, ws: false },

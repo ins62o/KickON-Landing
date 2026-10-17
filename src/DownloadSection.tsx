@@ -15,7 +15,7 @@ export function DownloadSection() {
     </section>
     <footer className="product-footer">
       <img src="/branding/kickon-on-hires.webp" alt="ON 킥온 로고" width="768" height="768" loading="lazy" />
-      <nav aria-label="하단 안내"><a href="/privacy/">개인정보처리방침</a><a href="/terms/">이용약관</a></nav>
+      <nav aria-label="하단 안내"><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
       <small>© KICKON</small>
     </footer>
   </>;

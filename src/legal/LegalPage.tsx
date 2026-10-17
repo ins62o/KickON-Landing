@@ -30,11 +30,7 @@ export function LegalPage({
     <div className="legal-site">
       <a className="legal-skip-link" href="#legal-main">본문으로 바로가기</a>
 
-      <header className="legal-header">
-        <a className="legal-brand" href="/" aria-label="KICKON 홈">
-          <img src="/branding/kickon-wordmark-light.webp" alt="킥온" width="2172" height="724" />
-        </a>
-      </header>
+      <a className="legal-back-link" href="/policies">← 이용 안내로 돌아가기</a>
 
       <main className="legal-main" id="legal-main">
         <header className="legal-document-header">
@@ -81,9 +77,9 @@ export function LegalPage({
 
       <footer className="legal-footer">
         <nav aria-label="법적 고지">
-          <a href="/terms/">이용약관</a>
-          <a href="/privacy/">개인정보 처리방침</a>
-          <a href="/account-deletion/">계정 삭제 요청</a>
+          <a href="/terms">이용약관</a>
+          <a href="/privacy">개인정보 처리방침</a>
+          <a href="/account-deletion">계정 삭제 요청</a>
         </nav>
         <p>© 2026 KICKON. All rights reserved.</p>
       </footer>

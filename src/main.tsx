@@ -1,16 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App";
-import "./index.css";
+import LandingApp from "./landing/LandingApp";
+import "../styles.css";
+import "../product.css";
 
-const root = document.getElementById("root");
-
-if (!root) {
-  throw new Error("Missing #root element");
-}
-
-createRoot(root).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+createRoot(document.getElementById("root")!).render(<StrictMode><LandingApp /></StrictMode>);

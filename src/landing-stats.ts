@@ -9,15 +9,16 @@ function parseCount(value: unknown): number {
   return count;
 }
 
-export function getMilestone(count: number): number {
+export function getMilestone(count: number, step?: number): number {
   parseCount(count);
-  if (count < 10) return count;
-  const step = 10 ** Math.max(1, String(count).length - 2);
-  return Math.floor(count / step) * step;
+  const unit = step ?? 10 ** Math.max(1, String(count).length - 2);
+  if (!Number.isSafeInteger(unit) || unit < 1) throw new Error("INVALID_STATS_STEP");
+  if (count < unit) return count;
+  return Math.floor(count / unit) * unit;
 }
 
-export function formatMilestone(count: number): string {
-  return `${getMilestone(count).toLocaleString("en-US")}${count >= 10 ? "+" : ""}`;
+export function formatMilestone(count: number, step?: number): string {
+  return `${getMilestone(count, step).toLocaleString("en-US")}${count >= (step ?? 10) ? "+" : ""}`;
 }
 
 export async function fetchLandingStats(config: StatsConfig, signal?: AbortSignal, fetcher: typeof fetch = fetch): Promise<LandingStats> {
