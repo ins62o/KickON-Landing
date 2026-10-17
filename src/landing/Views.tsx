@@ -112,7 +112,7 @@ export function FeaturesView() {
               </div>
               <svg className="notification-route" viewBox="0 0 400 500" fill="none" aria-hidden="true"><path className="motion-piece" d="M280 280C350 280 350 340 288 365" stroke="#70caff" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="140" /></svg>
               <div className="goal-notification motion-piece"><span className="goal-icon"><img src={kickonLogo} alt="킥온" width="32" height="24" /></span><div><strong>인천유나이티드 골!</strong><span>후반 23분 · 인천 3 : 0 포항</span></div></div>
-              <div className="goal-word motion-piece" aria-hidden="true">GOAL!</div>
+              <div className="goal-word motion-piece" aria-hidden="true"><span>GOAL!</span></div>
             </div>
             <p className="motion-caption">스코어가 바뀌는 순간, 알림도 함께</p>
           </div>

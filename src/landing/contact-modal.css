@@ -32,6 +32,7 @@
 .contact-confirm { border: 1px solid #88cfff99; background: #196ca5; color: #fff; }
 .contact-confirm:hover { background: #2084c5; }
 .contact-confirm:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 720px) { .contact-dialog h2 { font-size: 24px; line-height: calc(7em / 6); } }
 @media (max-width: 520px) { .contact-panel { padding: 26px 22px; } .contact-fields { grid-template-columns: 1fr; } .contact-dialog h2 { font-size: 24px; } .contact-close { right: 13px; top: 13px; } }
 
 .contact-form-body { min-width: 0; margin: 0; padding: 0; border: 0; }

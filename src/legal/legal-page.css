@@ -64,7 +64,8 @@
 }
 @media (max-width: 720px) {
   .policy-hub { justify-content: flex-start; gap: 28px; padding: 34px 0 20px; }
-  .policy-heading .product-title { font-size: 24px; }
+  .policy-heading .product-title { font-size: 36px; }
+  .policy-card-top span { font-size: 12px; color: #cbd8e5; }
   .policy-heading p { font-size: 13px; margin-top: 14px; }
   .policy-cards { grid-template-columns: 1fr; gap: 14px; }
   .policy-card { min-height: 215px; padding: 24px; }
@@ -72,7 +73,7 @@
   .policy-card-link { padding-top: 20px; }
   .legal-view { margin-top: 20px; }
   .legal-main { padding-top: 20px; }
-  .legal-document-header h1 { font-size: 26px; }
+  .legal-document-header h1 { font-size: 36px; letter-spacing: 0; }
   .legal-description { font-size: 13px; }
   .legal-layout { grid-template-columns: 1fr; gap: 24px; margin-top: 26px; }
   .legal-toc { position: static; padding: 16px; border: 1px solid #a7c7e12b; border-radius: 12px; background: #081a2bc9; }

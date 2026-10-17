@@ -170,6 +170,8 @@
  .feature-selector:last-child { border-bottom: 0; }
  .feature-selector::after { left: 50%; right: auto; top: auto; bottom: 3px; width: 3px; height: 3px; transform: translateX(-50%); }
  .scene-number { font-size: 12px; padding-top: 0; }
+ .goal-word { letter-spacing: 0; }
+ .goal-word > span { display: block; font-size: 36px; transform: scale(calc(1 / var(--motion-scale, 1))); }
  .scene-title { transition: color .2s; font-size: 12px; }
  .scene-title small { display: none; }
  .feature-stores { display: none; }
@@ -190,7 +192,7 @@
  .ticket-copy .cta i { font-size: 15px; }
  .ticket-note { font-size: 12px; line-height: 1.6; }
 }
-@media (max-width: 420px) { .product-title { font-size: 24px; } .feature-stage { height: 500px; min-height: 500px; --motion-scale: .72; } .schedule-canvas { --schedule-scale: .84; } .live-canvas { --motion-scale: .88; } }
+@media (max-width: 420px) { .feature-stage { height: 500px; min-height: 500px; --motion-scale: .72; } .schedule-canvas { --schedule-scale: .84; } .live-canvas { --motion-scale: .88; } }
 @media (max-width: 360px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .76; } }
 @media (max-height: 640px) and (min-width: 721px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .82; } }
 @media (prefers-reduced-motion: reduce) {
