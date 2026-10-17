@@ -176,21 +176,21 @@
  .feature-stage { flex: none; height: 530px; min-height: 530px; --motion-scale: .94; }
  .schedule-canvas { --schedule-scale: .9; }
  .ticket-view { justify-content: flex-start; padding-top: 20px; }
- .memory-line { height: 240px; transform: translateY(-12px); }
+ .memory-line { height: 220px; margin-top: auto; transform: translateY(-12px); }
  .memory-string { height: 100px; }
- .hanging-photo { width: min(42vw, 190px); top: 44px; }
- .hanging-photo--stadium { left: 26%; }
- .hanging-photo--supporter { left: 74%; }
+ .hanging-photo { width: min(36vw, 190px); top: 44px; }
+ .hanging-photo--stadium { left: 23%; }
+ .hanging-photo--supporter { left: 77%; }
  .photo-sway { padding: 7px 7px 0; }
- .photo-sway figcaption { font-size: 10px; padding: 12px 0; }
- .ticket-copy { padding-top: 0; }
+ .photo-sway figcaption { font-family: var(--font-sans); font-size: 11px; word-break: keep-all; padding: 12px 0; }
+ .ticket-copy { margin-bottom: auto; padding: 0 4px 12px; }
  .ticket-copy .product-title { font-size: 36px; }
- .ticket-copy .product-lede { font-size: 12px; }
- .ticket-copy .cta { font-size: 11px; padding: 10px 14px; }
+ .ticket-copy .product-lede { font-size: 14px; }
+ .ticket-copy .cta { min-height: 46px; font-size: 12px; padding: 12px 18px; }
  .ticket-copy .cta i { font-size: 15px; }
- .ticket-note { font-size: 9px; }
+ .ticket-note { font-size: 12px; line-height: 1.6; }
 }
-@media (max-width: 420px) { .product-title, .ticket-copy .product-title { font-size: 24px; } .feature-stage { height: 500px; min-height: 500px; --motion-scale: .72; } .schedule-canvas { --schedule-scale: .84; } .live-canvas { --motion-scale: .88; } }
+@media (max-width: 420px) { .product-title { font-size: 24px; } .feature-stage { height: 500px; min-height: 500px; --motion-scale: .72; } .schedule-canvas { --schedule-scale: .84; } .live-canvas { --motion-scale: .88; } }
 @media (max-width: 360px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .76; } }
 @media (max-height: 640px) and (min-width: 721px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .82; } }
 @media (prefers-reduced-motion: reduce) {
