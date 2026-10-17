@@ -111,16 +111,20 @@ export function FeaturesView() {
                 <div className="match-progress"><span className="motion-piece"></span><b className="motion-piece"></b></div>
               </div>
               <svg className="notification-route" viewBox="0 0 400 500" fill="none" aria-hidden="true"><path className="motion-piece" d="M280 280C350 280 350 340 288 365" stroke="#70caff" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="140" /></svg>
-              {[
-                { phase: 'kickoff', title: '경기가 시작됐어요', detail: '인천 vs 포항 · 킥오프' },
-                { phase: 'goal', title: '인천유나이티드 골!', detail: '후반 23분 · 인천 1 : 0 포항' },
-                { phase: 'fulltime', title: '경기가 종료됐어요', detail: '경기 종료 · 인천 1 : 0 포항' },
-              ].map(({ phase, title, detail }) => (
-                <div className="goal-notification motion-piece" data-live-notice={phase} key={phase}>
-                  <span className="goal-icon"><img src={kickonLogo} alt="킥온" width="32" height="24" /></span>
-                  <div><strong>{title}</strong><span>{detail}</span></div>
+              <div className="goal-notification motion-piece">
+                <span className="goal-icon"><img src={kickonLogo} alt="킥온" width="32" height="24" /></span>
+                <div className="notification-copy">
+                  {[
+                    { phase: 'kickoff', title: '경기가 시작됐어요', detail: '인천 vs 포항 · 킥오프' },
+                    { phase: 'goal', title: '인천유나이티드 골!', detail: '후반 23분 · 인천 1 : 0 포항' },
+                    { phase: 'fulltime', title: '경기가 종료됐어요', detail: '경기 종료 · 인천 1 : 0 포항' },
+                  ].map(({ phase, title, detail }) => (
+                    <div className="notification-message motion-piece" data-live-notice={phase} key={phase}>
+                      <strong>{title}</strong><span>{detail}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
               {[
                 { phase: 'kickoff', label: 'KICKOFF!' },
                 { phase: 'goal', label: 'GOAL!' },

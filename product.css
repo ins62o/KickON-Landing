@@ -89,13 +89,15 @@
 .signal-ring-two { animation-delay: .3s; }
 .notification-route { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .notification-route path { stroke-dashoffset: 0; animation: notificationTrace 10s ease 1 both; }
-.goal-notification { position: absolute; left: 28px; top: 350px; width: 344px; display: flex; align-items: center; gap: 13px; padding: 17px; background: #142e47; border: 1px solid #8bc9ff8c; border-radius: 18px; box-shadow: 0 13px 35px #0006; opacity: 0; animation: goalArrive 10s var(--ease) 1 both; }
+.goal-notification { position: absolute; left: 28px; top: 350px; width: 344px; display: flex; align-items: center; gap: 13px; padding: 17px; background: #142e47; border: 1px solid #8bc9ff8c; border-radius: 18px; box-shadow: 0 13px 35px #0006; opacity: 0; animation: notificationArrive 10s var(--ease) 1 both; }
 .goal-icon { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border-radius: 12px; background: #fff; }
 .goal-icon img { display: block; width: 32px; height: 24px; object-fit: contain; }
 .goal-notification strong { display: block; font-size: 15px; line-height: 1.6; color: #f2f8ff; font-weight: 600; }
 .goal-notification div > span { display: block; font-size: 13px; line-height: 1.5; color: #c5d8e9; margin-top: 6px; }
-.goal-notification[data-live-notice=kickoff] { animation-name: kickoffNotice; }
-.goal-notification[data-live-notice=fulltime] { animation-name: fullTimeNotice; }
+.notification-copy { display: grid; flex: 1; min-width: 0; }
+.notification-message { grid-area: 1 / 1; visibility: hidden; animation: goalNotice 10s steps(1, end) 1 both; }
+.notification-message[data-live-notice=kickoff] { animation-name: kickoffNotice; }
+.notification-message[data-live-notice=fulltime] { animation-name: fullTimeNotice; }
 .goal-word { position: absolute; left: 0; width: 100%; text-align: center; top: 48px; font-family: 'Mona12',monospace; font-size: 30px; color: #b9e9ff; letter-spacing: .05em; opacity: 0; animation: goalWord 10s var(--ease) 1 both; text-shadow: 0 0 18px #70caff60; }
 .goal-word[data-live-cue=kickoff] { animation-name: kickoffWord; }
 .goal-word[data-live-cue=fulltime] { animation-name: fullTimeWord; }
@@ -129,12 +131,13 @@
 @keyframes matchProgress { 0%,16% { transform: scaleX(0); } 49% { transform: scaleX(.5); } 82%,100% { transform: scaleX(1); } }
 @keyframes progressHead { 0%,16% { left: 0; } 49% { left: 50%; } 82%,100% { left: 100%; } }
 @keyframes goalSignal { 0%,44%,100% { opacity: 0; transform: scale(.75); } 50% { opacity: .7; } 72%,95% { opacity: 0; transform: scale(1.36); } }
-@keyframes notificationTrace { 0%,17%,42%,47%,76%,78%,100% { opacity: 0; stroke-dashoffset: 140; } 23%,36%,55%,70%,84%,92% { opacity: .7; stroke-dashoffset: 0; } }
-@keyframes kickoffNotice { 0%,17%,44%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 23%,36% { opacity: 1; transform: none; } }
+@keyframes notificationTrace { 0%,17% { opacity: 0; stroke-dashoffset: 140; } 23%,100% { opacity: .7; stroke-dashoffset: 0; } }
+@keyframes notificationArrive { 0%,17% { opacity: 0; transform: translateY(18px) scale(.98); } 23%,100% { opacity: 1; transform: none; } }
+@keyframes kickoffNotice { 0% { visibility: visible; } 51%,100% { visibility: hidden; } }
 @keyframes kickoffWord { 0%,10%,34%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 16%,26% { opacity: 1; transform: none; } }
-@keyframes goalArrive { 0%,47%,76%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 55%,70% { opacity: 1; transform: none; } }
+@keyframes goalNotice { 0% { visibility: hidden; } 51% { visibility: visible; } 84%,100% { visibility: hidden; } }
 @keyframes goalWord { 0%,44%,71%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 51%,64% { opacity: 1; transform: none; } }
-@keyframes fullTimeNotice { 0%,78% { opacity: 0; transform: translateY(18px) scale(.98); } 86%,100% { opacity: 1; transform: none; } }
+@keyframes fullTimeNotice { 0% { visibility: hidden; } 84%,100% { visibility: visible; } }
 @keyframes fullTimeWord { 0%,78% { opacity: 0; transform: translateY(10px) scale(.9); } 84%,100% { opacity: 1; transform: none; } }
 @keyframes chatOne { 0%,7%,100% { opacity: 0; transform: translate(-40px,20px) scale(.9); } 18%,86% { opacity: 1; transform: none; } }
 @keyframes chatTwo { 0%,26%,100% { opacity: 0; transform: translate(40px,18px) scale(.9); } 38%,86% { opacity: 1; transform: none; } }
@@ -208,8 +211,11 @@
 @media (prefers-reduced-motion: reduce) {
  .typing-motion, .signal-ring, .notification-route { display: none; }
  .live-motion-board { opacity: 1; }
- .goal-notification, .goal-word { opacity: 0; transform: none; }
- .goal-notification[data-live-notice=fulltime], .goal-word[data-live-cue=fulltime] { opacity: 1; }
+ .goal-notification { opacity: 1; transform: none; }
+ .notification-message { visibility: hidden; }
+ .notification-message[data-live-notice=fulltime] { visibility: visible; }
+ .goal-word { opacity: 0; transform: none; }
+ .goal-word[data-live-cue=fulltime] { opacity: 1; }
  .score-reel-track { transform: translateY(-1em); }
  .match-progress > span { transform: scaleX(1); }
  .match-progress > b { left: 100%; }
