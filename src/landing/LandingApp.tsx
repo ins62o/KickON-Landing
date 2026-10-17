@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from "react";
-import type { CSSProperties, MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import { initNavigation } from "../../navigation.js";
 import { canonicalLandingPath, landingRoute } from "../landing-routes";
 import { HomeView, FeaturesView, MatchdayView } from "./Views";
@@ -86,11 +86,11 @@ export default function LandingApp() {
       </div>
     <div className="menu-overlay" hidden></div>
     <nav className="mobile-menu" id="mobile-menu" aria-label="모바일 메뉴" lang="ko" hidden>
-      <a className={route === "home" ? "mobile-link active" : "mobile-link"} href="/" aria-current={route === "home" ? "page" : undefined} style={{"--i": "0"} as CSSProperties}>홈</a>
-      <a className={route === "features" ? "mobile-link active" : "mobile-link"} href="/features" aria-current={route === "features" ? "page" : undefined} style={{"--i": "1"} as CSSProperties}>주요 기능</a>
-      <a className={route === "matchday" ? "mobile-link active" : "mobile-link"} href="/matchday" aria-current={route === "matchday" ? "page" : undefined} style={{"--i": "2"} as CSSProperties}>직관 기록</a>
-      <a className={legalRoute ? "mobile-link active" : "mobile-link"} href="/policies" aria-current={legalRoute ? "page" : undefined} style={{"--i": "3"} as CSSProperties}>이용 약관</a>
-      <button className="sign-in mobile-sign-in" type="button" data-contact-trigger="" aria-haspopup="dialog" style={{"--i": "4"} as CSSProperties} onClick={() => setContactOpen(true)}>문의 하기</button>
+      <a className={route === "home" ? "mobile-link active" : "mobile-link"} href="/" aria-current={route === "home" ? "page" : undefined}>홈</a>
+      <a className={route === "features" ? "mobile-link active" : "mobile-link"} href="/features" aria-current={route === "features" ? "page" : undefined}>주요 기능</a>
+      <a className={route === "matchday" ? "mobile-link active" : "mobile-link"} href="/matchday" aria-current={route === "matchday" ? "page" : undefined}>직관 기록</a>
+      <a className={legalRoute ? "mobile-link active" : "mobile-link"} href="/policies" aria-current={legalRoute ? "page" : undefined}>이용 약관</a>
+      <button className="sign-in mobile-sign-in" type="button" data-contact-trigger="" aria-haspopup="dialog" onClick={() => setContactOpen(true)}>문의 하기</button>
     </nav>
     {contactOpen ? <ContactModal onClose={() => setContactOpen(false)} onConfirm={submitContact} /> : null}
     </div>
