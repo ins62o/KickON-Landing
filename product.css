@@ -69,7 +69,7 @@
 .match-motion-location { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 20px; color: #a8bdd0; font-size: 12px; }
 .live-canvas { height: 500px; top: calc(50% - 16px); }
 .live-motion-board .match-motion-top, .live-motion-board .match-motion-top > span:first-child { font-size: 12px; letter-spacing: 0; color: #c4ddf2; }
-.live-motion-board { position: absolute; left: 17px; top: 94px; width: 366px; padding: 22px 20px 26px; border: 1px solid #82b6e25c; border-radius: 25px; background: #0a1d31f5; box-shadow: 0 20px 45px #0006; }
+.live-motion-board { animation: liveBoardReveal 10s var(--ease) 1 both; position: absolute; left: 17px; top: 94px; width: 366px; padding: 22px 20px 26px; border: 1px solid #82b6e25c; border-radius: 25px; background: #0a1d31f5; box-shadow: 0 20px 45px #0006; }
 .live-indicator { display: flex; align-items: center; gap: 7px; }
 .live-indicator b { width: 5px; height: 5px; background: #70caff; border-radius: 50%; animation: indicatorBlink 1.5s ease infinite; }
 .live-scoreboard { display: flex; align-items: center; justify-content: space-between; gap: 9px; margin-top: 26px; }
@@ -83,18 +83,22 @@
 .score-reel-track b { height: 1em; font-weight: 600; }
 .match-clock-line { display: flex; justify-content: space-between; gap: 8px; color: #d0e1f0; font-size: 13px; line-height: 1.5; font-weight: 500; margin-top: 23px; }
 .match-progress { position: relative; height: 3px; margin-top: 9px; background: #31516d; border-radius: 5px; }
-.match-progress > span { display: block; width: 80%; height: 100%; background: #70caff; transform-origin: left; animation: matchProgress 10s linear infinite both; }
-.match-progress > b { position: absolute; top: -2px; left: 80%; width: 7px; height: 7px; border-radius: 50%; background: #c4eeff; box-shadow: 0 0 12px #70caff; animation: progressHead 10s linear infinite both; }
-.signal-ring { position: absolute; left: 50px; top: 32px; width: 300px; height: 300px; border: 1px solid #70caff80; border-radius: 50%; animation: goalSignal 10s ease-out infinite both; }
+.match-progress > span { display: block; width: 100%; height: 100%; background: #70caff; transform-origin: left; animation: matchProgress 10s linear 1 both; }
+.match-progress > b { position: absolute; top: -2px; left: 0; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: #c4eeff; box-shadow: 0 0 12px #70caff; animation: progressHead 10s linear 1 both; }
+.signal-ring { position: absolute; left: 50px; top: 32px; width: 300px; height: 300px; border: 1px solid #70caff80; border-radius: 50%; animation: goalSignal 10s ease-out 1 both; }
 .signal-ring-two { animation-delay: .3s; }
 .notification-route { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.notification-route path { stroke-dashoffset: 0; animation: notificationTrace 10s ease infinite both; }
-.goal-notification { position: absolute; left: 28px; top: 350px; width: 344px; display: flex; align-items: center; gap: 13px; padding: 17px; background: #142e47; border: 1px solid #8bc9ff8c; border-radius: 18px; box-shadow: 0 13px 35px #0006; animation: goalArrive 10s var(--ease) infinite both; }
+.notification-route path { stroke-dashoffset: 0; animation: notificationTrace 10s ease 1 both; }
+.goal-notification { position: absolute; left: 28px; top: 350px; width: 344px; display: flex; align-items: center; gap: 13px; padding: 17px; background: #142e47; border: 1px solid #8bc9ff8c; border-radius: 18px; box-shadow: 0 13px 35px #0006; opacity: 0; animation: goalArrive 10s var(--ease) 1 both; }
 .goal-icon { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border-radius: 12px; background: #fff; }
 .goal-icon img { display: block; width: 32px; height: 24px; object-fit: contain; }
 .goal-notification strong { display: block; font-size: 15px; line-height: 1.6; color: #f2f8ff; font-weight: 600; }
 .goal-notification div > span { display: block; font-size: 13px; line-height: 1.5; color: #c5d8e9; margin-top: 6px; }
-.goal-word { position: absolute; left: 133px; top: 48px; font-family: 'Mona12',monospace; font-size: 30px; color: #b9e9ff; letter-spacing: .05em; animation: goalWord 10s var(--ease) infinite both; text-shadow: 0 0 18px #70caff60; }
+.goal-notification[data-live-notice=prematch] { animation-name: preMatchNotice; }
+.goal-notification[data-live-notice=fulltime] { animation-name: fullTimeNotice; }
+.goal-word { position: absolute; left: 0; width: 100%; text-align: center; top: 48px; font-family: 'Mona12',monospace; font-size: 30px; color: #b9e9ff; letter-spacing: .05em; opacity: 0; animation: goalWord 10s var(--ease) 1 both; text-shadow: 0 0 18px #70caff60; }
+.goal-word[data-live-cue=kickoff] { animation-name: kickoffWord; }
+.goal-word[data-live-cue=fulltime] { animation-name: fullTimeWord; }
 .community-motion-heading { position: absolute; top: 49px; left: 30px; width: 340px; display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid #88b4d647; }
 .community-motion-heading img { width: 38px; height: 38px; }
 .community-motion-heading strong { display: block; font-size: 13px; font-weight: 500; }
@@ -119,13 +123,19 @@
 @keyframes dateSelect { 0%,23%,100% { opacity: 0; transform: scale(.85); } 30%,94% { opacity: 1; transform: scale(1); } }
 @keyframes matchUnfold { 0%,26%,100% { opacity: 0; transform: translateY(24px) scale(.98); } 40%,94% { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes indicatorBlink { 50% { opacity: .35; } }
-@keyframes scoreRoll { 0%,27% { transform: translateY(0); } 39%,100% { transform: translateY(-1em); } }
-@keyframes matchProgress { 0%,100% { transform: scaleX(.3); } 85% { transform: scaleX(1); } }
-@keyframes progressHead { 0%,100% { left: 24%; } 85% { left: 80%; } }
-@keyframes goalSignal { 0%,30%,100% { opacity: 0; transform: scale(.75); } 36% { opacity: .7; } 65%,95% { opacity: 0; transform: scale(1.36); } }
-@keyframes notificationTrace { 0%,29%,100% { opacity: 0; stroke-dashoffset: 140; } 42%,65% { opacity: .7; stroke-dashoffset: 0; } 80% { opacity: 0; } }
-@keyframes goalArrive { 0%,38%,100% { opacity: 0; transform: translateY(40px) scale(.94); } 52%,86% { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes goalWord { 0%,29%,100% { opacity: 0; transform: translateY(10px) scale(.85); } 39%,78% { opacity: 1; transform: translateY(0) scale(1); } }
+/* One match story; final score and full-time notice hold until the scene leaves. */
+@keyframes liveBoardReveal { 0%,18% { opacity: .45; } 24%,100% { opacity: 1; } }
+@keyframes scoreRoll { 0%,44% { transform: translateY(0); } 51%,100% { transform: translateY(-1em); } }
+@keyframes matchProgress { 0%,22% { transform: scaleX(0); } 48% { transform: scaleX(.75); } 82%,100% { transform: scaleX(1); } }
+@keyframes progressHead { 0%,22% { left: 0; } 48% { left: 75%; } 82%,100% { left: 100%; } }
+@keyframes goalSignal { 0%,44%,100% { opacity: 0; transform: scale(.75); } 50% { opacity: .7; } 72%,95% { opacity: 0; transform: scale(1.36); } }
+@keyframes notificationTrace { 0%,4%,22%,43%,76%,78%,100% { opacity: 0; stroke-dashoffset: 140; } 8%,17%,50%,65%,84%,92% { opacity: .7; stroke-dashoffset: 0; } }
+@keyframes preMatchNotice { 0%,3%,23%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 8%,17% { opacity: 1; transform: none; } }
+@keyframes kickoffWord { 0%,19%,40%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 25%,33% { opacity: 1; transform: none; } }
+@keyframes goalArrive { 0%,47%,76%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 55%,70% { opacity: 1; transform: none; } }
+@keyframes goalWord { 0%,44%,71%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 51%,64% { opacity: 1; transform: none; } }
+@keyframes fullTimeNotice { 0%,78% { opacity: 0; transform: translateY(18px) scale(.98); } 86%,100% { opacity: 1; transform: none; } }
+@keyframes fullTimeWord { 0%,78% { opacity: 0; transform: translateY(10px) scale(.9); } 84%,100% { opacity: 1; transform: none; } }
 @keyframes chatOne { 0%,7%,100% { opacity: 0; transform: translate(-40px,20px) scale(.9); } 18%,86% { opacity: 1; transform: none; } }
 @keyframes chatTwo { 0%,26%,100% { opacity: 0; transform: translate(40px,18px) scale(.9); } 38%,86% { opacity: 1; transform: none; } }
 @keyframes chatThree { 0%,55%,100% { opacity: 0; transform: translate(-30px,20px) scale(.9); } 67%,86% { opacity: 1; transform: none; } }
@@ -171,7 +181,7 @@
  .feature-selector::after { left: 50%; right: auto; top: auto; bottom: 3px; width: 3px; height: 3px; transform: translateX(-50%); }
  .scene-number { font-size: 12px; padding-top: 0; }
  .goal-word { letter-spacing: 0; }
- .goal-word > span { display: block; font-size: 36px; transform: scale(calc(1 / var(--motion-scale, 1))); }
+ .goal-word > span { display: inline-block; font-size: 36px; transform: scale(calc(1 / var(--motion-scale, 1))); }
  .scene-title { transition: color .2s; font-size: 12px; }
  .scene-title small { display: none; }
  .feature-stores { display: none; }
@@ -197,5 +207,10 @@
 @media (max-height: 640px) and (min-width: 721px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .82; } }
 @media (prefers-reduced-motion: reduce) {
  .typing-motion, .signal-ring, .notification-route { display: none; }
+ .live-motion-board { opacity: 1; }
+ .goal-notification, .goal-word { opacity: 0; transform: none; }
+ .goal-notification[data-live-notice=fulltime], .goal-word[data-live-cue=fulltime] { opacity: 1; }
  .score-reel-track { transform: translateY(-1em); }
+ .match-progress > span { transform: scaleX(1); }
+ .match-progress > b { left: 100%; }
 }

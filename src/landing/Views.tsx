@@ -102,17 +102,32 @@ export function FeaturesView() {
             <p className="motion-caption">기다리던 경기가, 한눈에</p>
           </div>
           <div className="motion-scene" data-scene-screen="live" hidden>
-            <div className="motion-canvas live-canvas">
+            <div className="motion-canvas live-canvas" role="img" aria-label="경기 시작 알림, 킥오프, 인천 득점으로 0대0에서 1대0, 경기 종료 알림으로 이어지는 모션 예시">
               <div className="signal-ring signal-ring-one motion-piece" aria-hidden="true"></div><div className="signal-ring signal-ring-two motion-piece" aria-hidden="true"></div>
-              <div className="live-motion-board">
+              <div className="live-motion-board motion-piece">
                 <div className="match-motion-top"><span className="live-indicator"><b className="motion-piece"></b>경기의 순간</span><span>실시간 경기 정보</span></div>
-                <div className="live-scoreboard"><div className="live-team"><img src={incheon} alt="" width="64" height="64" /><strong>인천</strong></div><div className="score-digits" aria-label="득점으로 2 대 0에서 3 대 0으로 바뀌는 스코어 예시"><span className="score-reel" aria-hidden="true"><span className="score-reel-track motion-piece"><b>2</b><b>3</b></span></span><span aria-hidden="true">:</span><span aria-hidden="true">0</span></div><div className="live-team"><img src={pohang} alt="" width="64" height="64" /><strong>포항</strong></div></div>
+                <div className="live-scoreboard"><div className="live-team"><img src={incheon} alt="" width="64" height="64" /><strong>인천</strong></div><div className="score-digits" aria-label="킥오프 0 대 0에서 인천 득점 후 1 대 0으로 유지되는 스코어 예시"><span className="score-reel" aria-hidden="true"><span className="score-reel-track motion-piece"><b>0</b><b>1</b></span></span><span aria-hidden="true">:</span><span aria-hidden="true">0</span></div><div className="live-team"><img src={pohang} alt="" width="64" height="64" /><strong>포항</strong></div></div>
                 <div className="match-clock-line"><span>킥오프</span><span>함께 뛰는 90분</span><span>종료 휘슬</span></div>
                 <div className="match-progress"><span className="motion-piece"></span><b className="motion-piece"></b></div>
               </div>
               <svg className="notification-route" viewBox="0 0 400 500" fill="none" aria-hidden="true"><path className="motion-piece" d="M280 280C350 280 350 340 288 365" stroke="#70caff" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="140" /></svg>
-              <div className="goal-notification motion-piece"><span className="goal-icon"><img src={kickonLogo} alt="킥온" width="32" height="24" /></span><div><strong>인천유나이티드 골!</strong><span>후반 23분 · 인천 3 : 0 포항</span></div></div>
-              <div className="goal-word motion-piece" aria-hidden="true"><span>GOAL!</span></div>
+              {[
+                { phase: 'prematch', title: '곧 경기가 시작돼요', detail: '인천 vs 포항 · 킥오프 10분 전' },
+                { phase: 'goal', title: '인천유나이티드 골!', detail: '후반 23분 · 인천 1 : 0 포항' },
+                { phase: 'fulltime', title: '경기가 종료됐어요', detail: '경기 종료 · 인천 1 : 0 포항' },
+              ].map(({ phase, title, detail }) => (
+                <div className="goal-notification motion-piece" data-live-notice={phase} key={phase}>
+                  <span className="goal-icon"><img src={kickonLogo} alt="킥온" width="32" height="24" /></span>
+                  <div><strong>{title}</strong><span>{detail}</span></div>
+                </div>
+              ))}
+              {[
+                { phase: 'kickoff', label: 'KICKOFF!' },
+                { phase: 'goal', label: 'GOAL!' },
+                { phase: 'fulltime', label: 'FULL TIME' },
+              ].map(({ phase, label }) => (
+                <div className="goal-word motion-piece" data-live-cue={phase} aria-hidden="true" key={phase}><span>{label}</span></div>
+              ))}
             </div>
             <p className="motion-caption">스코어가 바뀌는 순간, 알림도 함께</p>
           </div>
