@@ -102,7 +102,7 @@ export function FeaturesView() {
             <p className="motion-caption">기다리던 경기가, 한눈에</p>
           </div>
           <div className="motion-scene" data-scene-screen="live" hidden>
-            <div className="motion-canvas live-canvas" role="img" aria-label="경기 시작 알림, 킥오프, 인천 득점으로 0대0에서 1대0, 경기 종료 알림으로 이어지는 모션 예시">
+            <div className="motion-canvas live-canvas" role="img" aria-label="경기 카드 등장, 킥오프와 경기 시작 알림, 진행 중 인천 득점으로 0대0에서 1대0, 경기 종료 알림으로 이어지는 모션 예시">
               <div className="signal-ring signal-ring-one motion-piece" aria-hidden="true"></div><div className="signal-ring signal-ring-two motion-piece" aria-hidden="true"></div>
               <div className="live-motion-board motion-piece">
                 <div className="match-motion-top"><span className="live-indicator"><b className="motion-piece"></b>경기의 순간</span><span>실시간 경기 정보</span></div>
@@ -112,7 +112,7 @@ export function FeaturesView() {
               </div>
               <svg className="notification-route" viewBox="0 0 400 500" fill="none" aria-hidden="true"><path className="motion-piece" d="M280 280C350 280 350 340 288 365" stroke="#70caff" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="140" /></svg>
               {[
-                { phase: 'prematch', title: '곧 경기가 시작돼요', detail: '인천 vs 포항 · 킥오프 10분 전' },
+                { phase: 'kickoff', title: '경기가 시작됐어요', detail: '인천 vs 포항 · 킥오프' },
                 { phase: 'goal', title: '인천유나이티드 골!', detail: '후반 23분 · 인천 1 : 0 포항' },
                 { phase: 'fulltime', title: '경기가 종료됐어요', detail: '경기 종료 · 인천 1 : 0 포항' },
               ].map(({ phase, title, detail }) => (

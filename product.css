@@ -94,7 +94,7 @@
 .goal-icon img { display: block; width: 32px; height: 24px; object-fit: contain; }
 .goal-notification strong { display: block; font-size: 15px; line-height: 1.6; color: #f2f8ff; font-weight: 600; }
 .goal-notification div > span { display: block; font-size: 13px; line-height: 1.5; color: #c5d8e9; margin-top: 6px; }
-.goal-notification[data-live-notice=prematch] { animation-name: preMatchNotice; }
+.goal-notification[data-live-notice=kickoff] { animation-name: kickoffNotice; }
 .goal-notification[data-live-notice=fulltime] { animation-name: fullTimeNotice; }
 .goal-word { position: absolute; left: 0; width: 100%; text-align: center; top: 48px; font-family: 'Mona12',monospace; font-size: 30px; color: #b9e9ff; letter-spacing: .05em; opacity: 0; animation: goalWord 10s var(--ease) 1 both; text-shadow: 0 0 18px #70caff60; }
 .goal-word[data-live-cue=kickoff] { animation-name: kickoffWord; }
@@ -124,14 +124,14 @@
 @keyframes matchUnfold { 0%,26%,100% { opacity: 0; transform: translateY(24px) scale(.98); } 40%,94% { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes indicatorBlink { 50% { opacity: .35; } }
 /* One match story; final score and full-time notice hold until the scene leaves. */
-@keyframes liveBoardReveal { 0%,18% { opacity: .45; } 24%,100% { opacity: 1; } }
+@keyframes liveBoardReveal { 0% { opacity: 0; transform: translateY(14px); } 8%,100% { opacity: 1; transform: none; } }
 @keyframes scoreRoll { 0%,44% { transform: translateY(0); } 51%,100% { transform: translateY(-1em); } }
-@keyframes matchProgress { 0%,22% { transform: scaleX(0); } 48% { transform: scaleX(.75); } 82%,100% { transform: scaleX(1); } }
-@keyframes progressHead { 0%,22% { left: 0; } 48% { left: 75%; } 82%,100% { left: 100%; } }
+@keyframes matchProgress { 0%,16% { transform: scaleX(0); } 49% { transform: scaleX(.5); } 82%,100% { transform: scaleX(1); } }
+@keyframes progressHead { 0%,16% { left: 0; } 49% { left: 50%; } 82%,100% { left: 100%; } }
 @keyframes goalSignal { 0%,44%,100% { opacity: 0; transform: scale(.75); } 50% { opacity: .7; } 72%,95% { opacity: 0; transform: scale(1.36); } }
-@keyframes notificationTrace { 0%,4%,22%,43%,76%,78%,100% { opacity: 0; stroke-dashoffset: 140; } 8%,17%,50%,65%,84%,92% { opacity: .7; stroke-dashoffset: 0; } }
-@keyframes preMatchNotice { 0%,3%,23%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 8%,17% { opacity: 1; transform: none; } }
-@keyframes kickoffWord { 0%,19%,40%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 25%,33% { opacity: 1; transform: none; } }
+@keyframes notificationTrace { 0%,17%,42%,47%,76%,78%,100% { opacity: 0; stroke-dashoffset: 140; } 23%,36%,55%,70%,84%,92% { opacity: .7; stroke-dashoffset: 0; } }
+@keyframes kickoffNotice { 0%,17%,44%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 23%,36% { opacity: 1; transform: none; } }
+@keyframes kickoffWord { 0%,10%,34%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 16%,26% { opacity: 1; transform: none; } }
 @keyframes goalArrive { 0%,47%,76%,100% { opacity: 0; transform: translateY(18px) scale(.98); } 55%,70% { opacity: 1; transform: none; } }
 @keyframes goalWord { 0%,44%,71%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 51%,64% { opacity: 1; transform: none; } }
 @keyframes fullTimeNotice { 0%,78% { opacity: 0; transform: translateY(18px) scale(.98); } 86%,100% { opacity: 1; transform: none; } }
