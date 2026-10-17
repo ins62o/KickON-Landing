@@ -145,7 +145,7 @@
 .photo-sway figcaption { padding: 13px 0 15px; text-align: center; font-family: 'Mona12', monospace; font-size: 12px; line-height: 1.5; }
 .photo-peg { position: absolute; z-index: 1; width: 12px; height: 32px; top: -21px; left: calc(50% - 6px); border-radius: 2px; background: linear-gradient(90deg,#a99a7c,#e4d7b9 50%,#ac9e80); box-shadow: 1px 2px 3px #0005; }
 .photo-peg::after { content: ''; position: absolute; top: 14px; left: -1px; width: 14px; height: 3px; background: #7d807e; }
-.ticket-vignette { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 580px 350px at 50% 65%, #03101ce8 0%, #03101c99 60%, transparent 100%); }
+.ticket-vignette { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse closest-side at 50% 65%, #03101ce8 0%, #03101c99 60%, transparent 100%); }
 .ticket-copy { text-align: center; padding: 12px; width: 100%; }
 .ticket-copy .product-title { font-size: 48px; text-align: center; }
 .ticket-copy .product-title span { margin-inline: auto; }
