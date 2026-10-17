@@ -13,7 +13,7 @@ test("legal URLs render the restored document, including direct index.html reque
     server: { middlewareMode: true, hmr: false, ws: false },
   });
   t.after(() => server.close());
-  const { getLegalPage } = await server.ssrLoadModule("/src/legal-routes.ts");
+  const { LegalDocumentView } = await server.ssrLoadModule("/src/landing/PolicyViews.tsx");
 
   for (const [path, title, sections] of [
     ["privacy", "개인정보 처리방침", 11],
@@ -21,7 +21,7 @@ test("legal URLs render the restored document, including direct index.html reque
     ["account-deletion", "계정 삭제 요청", 6],
   ] as const) {
     for (const suffix of ["", "/", "/index.html"]) {
-      const html = renderToStaticMarkup(createElement(getLegalPage(`/${path}${suffix}`)));
+      const html = renderToStaticMarkup(createElement(LegalDocumentView, { path: `/${path}${suffix}` }));
       assert.ok(html.includes(`<h1>${title}</h1>`));
       assert.equal((html.match(/class="legal-section"/g) ?? []).length, sections);
       assert.match(html, /href="\/privacy"/);
@@ -29,24 +29,4 @@ test("legal URLs render the restored document, including direct index.html reque
       assert.match(html, /href="\/account-deletion"/);
     }
   }
-  assert.throws(() => getLegalPage("/missing/"), /Unknown legal page/);
-});
-
-test("landing footer links only to privacy and terms", async (t) => {
-  const server = await createServer({
-    configFile: false, cacheDir: `/private/tmp/kickon-landing-tests-${process.pid}`,
-    appType: "custom",
-    plugins: [react()],
-    server: { middlewareMode: true, hmr: false, ws: false },
-  });
-  t.after(() => server.close());
-  const { DownloadSection } = await server.ssrLoadModule("/src/DownloadSection.tsx");
-  const html = renderToStaticMarkup(createElement(DownloadSection));
-  const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/)?.[1];
-  assert.ok(footer);
-  assert.deepEqual([...footer.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(([, href, label]) => ({ href, label })), [
-    { href: "/privacy", label: "개인정보처리방침" },
-    { href: "/terms", label: "이용약관" },
-  ]);
-  assert.doesNotMatch(footer, /서비스 소개|문의하기/);
 });

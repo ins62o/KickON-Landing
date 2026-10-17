@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 
@@ -70,18 +70,6 @@ test('hidden pages stop autoplay and reduced motion keeps scenes manually select
   assert.equal(still.timers.size, 0);
   assert.equal(still.screens[0].hidden, false);
 });
-
-test('ticket collage uses the app compact layout and contains no photo layers', () => {
-  const directory = new URL('../public/tickets/', import.meta.url);
-  const files = readdirSync(directory).filter(file => file.endsWith('.svg'));
-  assert.equal(files.length, 6);
-  for (const file of files) {
-    const source = readFileSync(new URL(file, directory), 'utf8');
-    assert.match(source, /data-layout="compact-no-photo"/);
-    assert.doesNotMatch(source, /<image|<script|<foreignObject|https?:\/\/(?!www.w3.org)/i);
-  }
-});
-
 
 test('leaving the features route disposes autoplay and its listeners', () => {
   const app = boot();

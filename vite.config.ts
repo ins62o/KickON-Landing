@@ -2,7 +2,6 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import type { Connect } from "vite";
 import { canonicalLandingPath } from "./src/landing-routes.ts";
-import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "node:path";
 
 const cleanRouteRequest: Connect.NextHandleFunction = (request, _response, next) => {
@@ -19,7 +18,7 @@ export default defineConfig({
     name: 'kickon-clean-routes',
     configureServer(server) { server.middlewares.use(cleanRouteRequest); },
     configurePreviewServer(server) { server.middlewares.use(cleanRouteRequest); },
-  }, react(), tailwindcss()],
+  }, react()],
   build: {
     rolldownOptions: {
       input: {

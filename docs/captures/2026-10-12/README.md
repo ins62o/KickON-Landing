@@ -1,5 +1,7 @@
 # 경기 라인업 캡처
 
+이 문서는 이전 랜딩의 캡처 제작 기록입니다. 원본 PNG는 보존하며, 아래의 웹용 WebP 두 파일은 현재 화면에서 사용하지 않아 2026-10-17에 제거했습니다.
+
 - 촬영: 2026-10-12 12:23 KST, Xcode Device Hub의 Screenshot 버튼.
 - 시뮬레이터: KICKON Jeonmoal Capture 20261009, iOS 27.0, 553DDA81-6FC3-4C9D-A818-D72C702A6881.
 - 앱: kr.kickon.dev, 기존 설치된 Debug 앱과 현재 앱 소스의 로컬 Metro 서버.
