@@ -22,7 +22,10 @@ export function ContactModal({ onClose, onConfirm }: ContactModalProps) {
     const dialog = dialogRef.current!;
     const previousFocus = document.activeElement;
     dialog.showModal();
-    dialog.querySelector<HTMLInputElement>('input[name="name"]')?.focus();
+    const initialFocus = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+      ? 'input[name="name"]'
+      : '.contact-close';
+    dialog.querySelector<HTMLElement>(initialFocus)?.focus({ preventScroll: true });
     return () => {
       dialog.close();
       if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus();
