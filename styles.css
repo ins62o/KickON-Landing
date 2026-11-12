@@ -351,13 +351,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
   padding: clamp(11px, 1.6vh, 13px) clamp(22px, 3vw, 28px);
   background: #fff;
   color: #000;
+  font-family: system-ui, sans-serif;
   font-size: clamp(13.5px, 1.5vw, 14.5px);
   font-weight: 600;
+  line-height: 1;
   white-space: nowrap;
   box-shadow: 0 0 0 1px rgba(255,255,255,0.15), 0 0 22px rgba(255,255,255,0.32), 0 0 44px rgba(255,255,255,0.12);
   transition: transform 0.25s var(--ease), box-shadow 0.25s;
 }
-.cta i { font-size: 18px; }
+.cta img { display: block; flex: none; width: 18px; height: 18px; object-fit: contain; }
 @media (hover: hover) and (pointer: fine) {
   .cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 0 28px rgba(255,255,255,0.46), 0 0 55px rgba(255,255,255,0.2); }
 }
@@ -381,11 +383,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
 .stat-label { font-size: clamp(11px, 1.2vw, 12.5px); font-weight: 400; line-height: 1.4; color: var(--muted); white-space: nowrap; }
 
 .anim { opacity: 0; transform: translateY(22px) scale(0.98); filter: blur(6px); animation: reveal 0.85s var(--ease) forwards; animation-delay: var(--d, 0s); }
-.cta-wrap.anim { animation-name: revealPulse; }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes reveal { to { opacity: var(--final-opacity, 1); transform: translateY(0) scale(1); filter: blur(0); } }
 @keyframes headlineFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes revealPulse { 0% { opacity: 0; transform: translateY(22px) scale(0.98); filter: blur(6px); } 65% { opacity: 1; transform: translateY(-1px) scale(1.025); filter: blur(0); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
 
 @media (max-width: 1200px) { .headline { font-size: 60px; } }
 @media (max-width: 900px) { .headline { font-size: 48px; } }

@@ -12,6 +12,8 @@ import matchday from "../../assets/stats/matchday.svg";
 import gangwon from "../../assets/teams/gangwon.webp";
 import kickonLogo from "../../assets/logo-white.svg";
 import pohang from "../../assets/teams/pohang.webp";
+import storeApple from "../../assets/store-apple.svg?inline";
+import storeGooglePlay from "../../assets/store-google-play.svg?inline";
 
 export function HomeView() {
   useLayoutEffect(initHome, []);
@@ -28,9 +30,9 @@ export function HomeView() {
 
         <h1 className="headline anim" lang="ko" aria-label="K리그가 일상이 되는 순간"><span>K<i className="headline-glyph-ri">리</i>그가</span> <span>일상이 되는 순간</span></h1>
         <p className="subhead anim" lang="ko" style={{"--d": "0.28s"} as CSSProperties}>응원의 순간부터 직관의 추억까지<br />K리그를 즐기는 새로운 방법</p>
-        <div className="cta-wrap anim" style={{"--d": "0.4s"} as CSSProperties} role="group" aria-label="킥온 앱 다운로드">
-          <a className="cta" href="https://apps.apple.com/kr/app/id6809176002" aria-label="App Store에서 킥온 다운로드"><i className="fa-brands fa-apple" aria-hidden="true"></i>App Store</a>
-          <a className="cta" href="https://play.google.com/store/apps/details?id=kr.kickon.app" aria-label="Google Play에서 킥온 다운로드"><i className="fa-brands fa-google-play" aria-hidden="true"></i>Google Play</a>
+        <div className="cta-wrap" role="group" aria-label="킥온 앱 다운로드">
+          <a className="cta" href="https://apps.apple.com/kr/app/id6809176002" aria-label="App Store에서 킥온 다운로드"><img src={storeApple} alt="" width="18" height="18" />App Store</a>
+          <a className="cta" href="https://play.google.com/store/apps/details?id=kr.kickon.app" aria-label="Google Play에서 킥온 다운로드"><img src={storeGooglePlay} alt="" width="18" height="18" />Google Play</a>
         </div>
       </main>
 
@@ -43,12 +45,12 @@ export function HomeView() {
         <div className="stat anim" style={{"--d": "0.58s"} as CSSProperties}>
           <span className="stat-icon" aria-hidden="true"><img src={clock} alt="" width="28" height="28" /></span>
           <span className="stat-value" data-kickon-days="" aria-label="킥온 시작 후 경과 일수">D+—</span>
-          <span className="stat-label">킥온이 달려온 시간</span>
+          <span className="stat-label">달려온 시간</span>
         </div>
         <div className="stat anim" style={{"--d": "0.66s"} as CSSProperties}>
           <span className="stat-icon" aria-hidden="true"><img src={notification} alt="" width="28" height="28" /></span>
           <span className="stat-value">LIVE</span>
-          <span className="stat-label">실시간 경기 알림</span>
+          <span className="stat-label">경기 알림</span>
         </div>
         <div className="stat anim" style={{"--d": "0.74s"} as CSSProperties}>
           <span className="stat-icon" aria-hidden="true"><img src={matchday} alt="" width="28" height="28" /></span>
@@ -71,7 +73,6 @@ export function FeaturesView() {
             <button className="feature-selector" data-scene-button="live" aria-pressed="false"><span className="scene-number">02</span><span className="scene-title">실시간 경기<small>라인업과 득점, 놓치고 싶지 않은 순간</small></span></button>
             <button className="feature-selector" data-scene-button="community" aria-pressed="false"><span className="scene-number">03</span><span className="scene-title">팬 커뮤니티<small>같은 팀을 응원하는 우리들의 이야기</small></span></button>
           </div>
-          <div className="feature-stores"><a href="https://apps.apple.com/kr/app/id6809176002" aria-label="App Store에서 킥온 다운로드"><i className="fa-brands fa-apple" aria-hidden="true"></i>App Store</a><a href="https://play.google.com/store/apps/details?id=kr.kickon.app" aria-label="Google Play에서 킥온 다운로드"><i className="fa-brands fa-google-play" aria-hidden="true"></i>Google Play</a></div>
         </div>
         <div className="feature-stage" role="region" aria-label="킥온 주요 기능 모션 디자인">
           <div className="motion-scene" data-scene-screen="fixtures">
@@ -102,7 +103,7 @@ export function FeaturesView() {
             <p className="motion-caption">기다리던 경기가, 한눈에</p>
           </div>
           <div className="motion-scene" data-scene-screen="live" hidden>
-            <div className="motion-canvas live-canvas" role="img" aria-label="경기 카드 등장, 킥오프와 경기 시작 알림, 진행 중 인천 득점으로 0대0에서 1대0, 경기 종료 알림으로 이어지는 모션 예시">
+            <div className="motion-canvas live-canvas" role="img" aria-label="경기 카드 등장, 라인업 등록 알림, 킥오프와 경기 시작 알림, 진행 중 인천 득점으로 0대0에서 1대0, 경기 종료 알림으로 이어지는 모션 예시">
               <div className="signal-ring signal-ring-one motion-piece" aria-hidden="true"></div><div className="signal-ring signal-ring-two motion-piece" aria-hidden="true"></div>
               <div className="live-motion-board motion-piece">
                 <div className="match-motion-top"><span className="live-indicator"><b className="motion-piece"></b>경기의 순간</span><span>실시간 경기 정보</span></div>
@@ -115,6 +116,7 @@ export function FeaturesView() {
                 <span className="goal-icon"><img src={kickonLogo} alt="킥온" width="32" height="24" /></span>
                 <div className="notification-copy">
                   {[
+                    { phase: 'lineup', title: '라인업이 등록됐어요', detail: '인천 vs 포항 · 선발 라인업' },
                     { phase: 'kickoff', title: '경기가 시작됐어요', detail: '인천 vs 포항 · 킥오프' },
                     { phase: 'goal', title: '인천유나이티드 골!', detail: '후반 23분 · 인천 1 : 0 포항' },
                     { phase: 'fulltime', title: '경기가 종료됐어요', detail: '경기 종료 · 인천 1 : 0 포항' },
@@ -126,6 +128,7 @@ export function FeaturesView() {
                 </div>
               </div>
               {[
+                { phase: 'lineup', label: 'LINEUP' },
                 { phase: 'kickoff', label: 'KICKOFF!' },
                 { phase: 'goal', label: 'GOAL!' },
                 { phase: 'fulltime', label: 'FULL TIME' },
@@ -154,21 +157,20 @@ export function FeaturesView() {
 export function MatchdayView() {
   return (<>
       <main className="product-view ticket-view" aria-labelledby="tickets-title">
-        <div className="memory-line" aria-label="경기장에서 남긴 사진들">
+        <div className="memory-line" aria-label="킥온 직관 기록 다크 모드와 라이트 모드">
           <svg className="memory-string" viewBox="0 0 1000 160" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M-10 28 Q500 120 1010 28" stroke="currentColor" strokeWidth="1.5" /></svg>
-          <figure className="hanging-photo hanging-photo--stadium">
-            <div className="photo-sway"><span className="photo-peg" aria-hidden="true"></span><img src="/product/memory-stadium.webp" width="960" height="640" alt="노을 아래 축구장을 바라본 경기장 연출 이미지" /><figcaption>킥오프를 기다리던 순간</figcaption></div>
+          <figure className="hanging-photo hanging-photo--dark">
+            <div className="photo-sway"><span className="photo-peg" aria-hidden="true"></span><img src="/product/attendance-record-dark.png" width="1086" height="1110" alt="킥온 다크 모드의 나의 직관 승률 카드" /></div>
           </figure>
-          <figure className="hanging-photo hanging-photo--supporter">
-            <div className="photo-sway"><span className="photo-peg" aria-hidden="true"></span><img src="/product/memory-supporter.webp" width="800" height="534" alt="응원 머플러를 들고 함께한 경기장 연출 이미지" /><figcaption>함께 외쳤던 그날의 함성</figcaption></div>
+          <figure className="hanging-photo hanging-photo--light">
+            <div className="photo-sway"><span className="photo-peg" aria-hidden="true"></span><img src="/product/attendance-record-light.png" width="1086" height="1110" alt="킥온 라이트 모드의 나의 직관 승률 카드" /></div>
           </figure>
         </div>
         <div className="ticket-vignette" aria-hidden="true"></div>
         <div className="ticket-copy">
-          <h1 className="headline product-title" id="tickets-title"><span>경기는 끝나도,</span><span>사진은 남으니까</span></h1>
-          <p className="product-lede">함께 뛰고, 목이 쉬도록 응원한 그날<br />사진과 함께 나만의 직관 기록으로 남겨보세요.</p>
-          <div className="cta-wrap" role="group" aria-label="킥온 앱 다운로드"><a className="cta" href="https://apps.apple.com/kr/app/id6809176002" aria-label="App Store에서 킥온 다운로드"><i className="fa-brands fa-apple" aria-hidden="true"></i>App Store</a><a className="cta" href="https://play.google.com/store/apps/details?id=kr.kickon.app" aria-label="Google Play에서 킥온 다운로드"><i className="fa-brands fa-google-play" aria-hidden="true"></i>Google Play</a></div>
-          <span className="ticket-note">나의 직관 기록은 앱에서 남길 수 있어요.</span>
+          <h1 className="headline product-title" id="tickets-title"><span>내가 가면,</span><span>우리 팀은 이길까?</span></h1>
+          <p className="product-lede">직관한 경기의 승무패부터 시즌별 승률까지<br />나만의 응원 기록을 한눈에 확인해보세요</p>
+          <div className="cta-wrap" role="group" aria-label="킥온 앱 다운로드"><a className="cta" href="https://apps.apple.com/kr/app/id6809176002" aria-label="App Store에서 킥온 다운로드"><img src={storeApple} alt="" width="18" height="18" />App Store</a><a className="cta" href="https://play.google.com/store/apps/details?id=kr.kickon.app" aria-label="Google Play에서 킥온 다운로드"><img src={storeGooglePlay} alt="" width="18" height="18" />Google Play</a></div>
         </div>
       </main>
   </>);

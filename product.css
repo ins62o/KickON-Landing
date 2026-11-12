@@ -32,16 +32,6 @@
   .feature-selector:hover .scene-title small { color: #c5e8ff; }
 }
 .scene-number, .scene-title small { transition: color .2s; }
-.feature-stores { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 27px; }
-.feature-stores a { font-size: 13px; color: #edf5fc; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; border: 0; background: transparent; transition: transform .2s var(--ease), color .2s; }
-.feature-stores a:focus-visible { color: #91d8ff; transform: translateY(-2px); }
-.feature-stores a i { transition: color .2s; }
-.feature-stores a:focus-visible i { color: #91d8ff; }
-@media (hover: hover) and (pointer: fine) {
-  .feature-stores a:hover { color: #91d8ff; transform: translateY(-2px); }
-  .feature-stores a:hover i { color: #91d8ff; }
-}
-.feature-stores i { font-size: 15px; }
 /* Native UI choreography: every scene animates its own elements. */
 .feature-stage { position: relative; width: 100%; min-width: 0; height: min(620px, calc(100dvh - 135px)); min-height: 450px; }
 .motion-scene { position: absolute; inset: 0; }
@@ -105,9 +95,11 @@
 .goal-notification div > span { display: block; font-size: 13px; line-height: 1.5; color: #c5d8e9; margin-top: 6px; }
 .notification-copy { display: grid; flex: 1; min-width: 0; overflow: hidden; }
 .notification-message { grid-area: 1 / 1; opacity: 0; animation: goalNotice 10s ease-in-out 1 both; }
+.notification-message[data-live-notice=lineup] { animation-name: lineupNotice; }
 .notification-message[data-live-notice=kickoff] { animation-name: kickoffNotice; }
 .notification-message[data-live-notice=fulltime] { animation-name: fullTimeNotice; }
 .goal-word { position: absolute; left: 0; width: 100%; text-align: center; top: 48px; font-family: 'Mona12',monospace; font-size: 30px; color: #b9e9ff; letter-spacing: .05em; opacity: 0; animation: goalWord 10s var(--ease) 1 both; text-shadow: 0 0 18px #70caff60; }
+.goal-word[data-live-cue=lineup] { animation-name: lineupWord; }
 .goal-word[data-live-cue=kickoff] { animation-name: kickoffWord; }
 .goal-word[data-live-cue=fulltime] { animation-name: fullTimeWord; }
 .community-motion-heading { position: absolute; top: 49px; left: 30px; width: 340px; display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid #88b4d647; }
@@ -137,13 +129,15 @@
 /* One match story; final score and full-time notice hold until the scene leaves. */
 @keyframes liveBoardReveal { 0% { opacity: 0; transform: translateY(14px); } 8%,100% { opacity: 1; transform: none; } }
 @keyframes scoreRoll { 0%,44% { transform: translateY(0); } 51%,100% { transform: translateY(-1em); } }
-@keyframes matchProgress { 0%,16% { transform: scaleX(0); } 49% { transform: scaleX(.5); } 82%,100% { transform: scaleX(1); } }
-@keyframes progressHead { 0%,16% { left: 0; } 49% { left: 50%; } 82%,100% { left: 100%; } }
+@keyframes matchProgress { 0%,26% { transform: scaleX(0); } 49% { transform: scaleX(.5); } 82%,100% { transform: scaleX(1); } }
+@keyframes progressHead { 0%,26% { left: 0; } 49% { left: 50%; } 82%,100% { left: 100%; } }
 @keyframes goalSignal { 0%,44%,100% { opacity: 0; transform: scale(.75); } 50% { opacity: .7; } 72%,95% { opacity: 0; transform: scale(1.36); } }
-@keyframes notificationTrace { 0%,17% { opacity: 0; stroke-dashoffset: 140; } 23%,100% { opacity: .7; stroke-dashoffset: 0; } }
-@keyframes notificationArrive { 0%,17% { opacity: 0; transform: translateY(18px) scale(.98); } 23%,100% { opacity: 1; transform: none; } }
-@keyframes kickoffNotice { 0%,48% { opacity: 1; transform: none; } 52%,100% { opacity: 0; transform: translateY(-6px); } }
-@keyframes kickoffWord { 0%,10%,34%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 16%,26% { opacity: 1; transform: none; } }
+@keyframes notificationTrace { 0%,5% { opacity: 0; stroke-dashoffset: 140; } 11%,100% { opacity: .7; stroke-dashoffset: 0; } }
+@keyframes notificationArrive { 0%,5% { opacity: 0; transform: translateY(18px) scale(.98); } 11%,100% { opacity: 1; transform: none; } }
+@keyframes lineupNotice { 0%,22% { opacity: 1; transform: none; } 26%,100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes lineupWord { 0%,4%,24%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 10%,18% { opacity: 1; transform: none; } }
+@keyframes kickoffNotice { 0%,22% { opacity: 0; transform: translateY(6px); } 26%,48% { opacity: 1; transform: none; } 52%,100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes kickoffWord { 0%,22%,44%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 28%,38% { opacity: 1; transform: none; } }
 @keyframes goalNotice { 0%,48% { opacity: 0; transform: translateY(6px); } 52%,82% { opacity: 1; transform: none; } 86%,100% { opacity: 0; transform: translateY(-6px); } }
 @keyframes goalWord { 0%,44%,71%,100% { opacity: 0; transform: translateY(10px) scale(.9); } 51%,64% { opacity: 1; transform: none; } }
 @keyframes fullTimeNotice { 0%,82% { opacity: 0; transform: translateY(6px); } 86%,100% { opacity: 1; transform: none; } }
@@ -154,17 +148,16 @@
 @keyframes typingFade { 0%,38%,63%,100% { opacity: 0; } 43%,55% { opacity: 1; } }
 @keyframes cheerWave { to { transform: scaleY(.3); opacity: .5; } }
 
-/* Two photo prints clipped to one gently bowed string. */
+/* Two win-rate tickets clipped to one gently bowed string. */
 .ticket-view { isolation: isolate; overflow: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 12px; padding-bottom: 36px; }
-.memory-line { transform: translateY(-24px); position: relative; width: min(100%, 1000px); height: 290px; flex: none; }
+.memory-line { transform: translateY(-24px); position: relative; width: min(100%, 1000px); height: 360px; flex: none; }
 .memory-string { position: absolute; top: 0; left: 0; width: 100%; height: 150px; color: #c1c6c3; filter: drop-shadow(0 2px 2px #000b); }
-.hanging-photo { position: absolute; top: 65px; width: clamp(175px, 19vw, 242px); margin: 0; transform: translateX(-50%); }
-.hanging-photo--stadium { left: 30%; --photo-angle: -6deg; }
-.hanging-photo--supporter { left: 70%; --photo-angle: 7deg; }
-.photo-sway { position: relative; padding: 10px 10px 0; background: #edf0ef; color: #263444; box-shadow: 0 14px 26px #0007; transform-origin: 50% -12px; animation: photoSway 7s ease-in-out infinite alternate; }
-.hanging-photo--supporter .photo-sway { animation-delay: -3s; animation-duration: 8.5s; }
-.photo-sway img { display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; object-fit: cover; }
-.photo-sway figcaption { padding: 13px 0 15px; text-align: center; font-family: 'Mona12', monospace; font-size: 12px; line-height: 1.5; }
+.hanging-photo { position: absolute; top: 65px; width: clamp(200px, 22vw, 280px); margin: 0; transform: translateX(-50%); }
+.hanging-photo--dark { left: 30%; --photo-angle: -6deg; }
+.hanging-photo--light { left: 70%; --photo-angle: 7deg; }
+.photo-sway { position: relative; transform-origin: 50% -12px; animation: photoSway 7s ease-in-out infinite alternate; }
+.hanging-photo--light .photo-sway { animation-delay: -3s; animation-duration: 8.5s; }
+.photo-sway img { display: block; width: 100%; aspect-ratio: 1086 / 1110; height: auto; object-fit: contain; }
 .photo-peg { position: absolute; z-index: 1; width: 12px; height: 32px; top: -21px; left: calc(50% - 6px); border-radius: 2px; background: linear-gradient(90deg,#a99a7c,#e4d7b9 50%,#ac9e80); box-shadow: 1px 2px 3px #0005; }
 .photo-peg::after { content: ''; position: absolute; top: 14px; left: -1px; width: 14px; height: 3px; background: #7d807e; }
 .ticket-vignette { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse closest-side at 50% 65%, #03101ce8 0%, #03101c99 60%, transparent 100%); }
@@ -174,9 +167,8 @@
 .ticket-copy .product-lede { color: #d6e1ed; font-size: 14px; }
 .ticket-copy .cta-wrap { margin-top: 22px; }
 .ticket-copy .cta { font-size: 12px; padding: 11px 20px; }
-.ticket-note { display: block; margin-top: 14px; font-size: 10px; color: #bdcfe0; text-shadow: 0 1px 5px #000; }
 @keyframes photoSway { from { transform: rotate(calc(var(--photo-angle) - 1.3deg)); } to { transform: rotate(calc(var(--photo-angle) + 1.3deg)); } }
-@media (max-height: 720px) and (min-width: 721px) { .memory-line { height: 225px; } .hanging-photo { width: 190px; top: 50px; } .memory-string { height: 120px; } .ticket-copy .product-title { font-size: 36px; } }
+@media (max-height: 720px) and (min-width: 721px) { .memory-line { height: 280px; } .hanging-photo { width: 210px; top: 50px; } .memory-string { height: 120px; } .ticket-copy .product-title { font-size: 36px; } }
 @media (max-width: 1050px) { .feature-view { gap: 24px; padding-inline: 20px; } .product-title { font-size: 36px; } .feature-stage { min-height: 430px; --motion-scale: .9; } }
 @media (max-width: 720px) {
  .features-page .bg::after { background: linear-gradient(180deg, #030c19d9 0%, #030c19b8 45%, #030c1966 100%); }
@@ -197,28 +189,24 @@
  .goal-word > span { display: inline-block; font-size: 36px; transform: scale(calc(1 / var(--motion-scale, 1))); }
  .scene-title { transition: color .2s; font-size: 12px; }
  .scene-title small { display: none; }
- .feature-stores { display: none; }
  .feature-stage { flex: none; height: 530px; min-height: 530px; --motion-scale: .94; }
  .feature-view[data-scene=community] .feature-stage { height: calc(440px * var(--motion-scale) + 48px); min-height: calc(440px * var(--motion-scale) + 48px); }
  .community-canvas { top: 0; transform: translateX(-50%) scale(var(--motion-scale)); transform-origin: top center; }
  .schedule-canvas { --schedule-scale: .9; }
  .ticket-view { justify-content: flex-start; padding-top: 20px; }
- .memory-line { height: 220px; margin-top: auto; transform: translateY(-12px); }
+ .memory-line { height: 240px; margin-top: auto; transform: translateY(-12px); }
  .memory-string { height: 100px; }
- .hanging-photo { width: min(36vw, 190px); top: 44px; }
- .hanging-photo--stadium { left: 23%; }
- .hanging-photo--supporter { left: 77%; }
- .photo-sway { padding: 7px 7px 0; }
- .photo-sway figcaption { font-family: var(--font-sans); font-size: 11px; word-break: keep-all; padding: 12px 0; }
+ .hanging-photo { width: min(38vw, 200px); top: 44px; }
+ .hanging-photo--dark { left: 23%; }
+ .hanging-photo--light { left: 77%; }
  .ticket-copy { margin-bottom: auto; padding: 0 4px 12px; }
  .ticket-copy .product-title { font-size: 36px; }
  .ticket-copy .product-lede { font-size: 14px; }
  .ticket-copy .cta { min-height: 46px; font-size: 12px; padding: 12px 18px; }
- .ticket-copy .cta i { font-size: 15px; }
- .ticket-note { font-size: 12px; line-height: 1.6; }
+ .ticket-copy .cta img { width: 15px; height: 15px; }
 }
 @media (max-width: 420px) { .feature-stage { height: 500px; min-height: 500px; --motion-scale: .72; } .schedule-canvas { --schedule-scale: .84; } .live-canvas { --motion-scale: .88; } }
-@media (max-width: 360px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .76; } }
+@media (max-width: 360px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .76; } .ticket-copy .product-title { font-size: 32px; } }
 @media (max-height: 640px) and (min-width: 721px) { .schedule-canvas { --schedule-scale: .78; } .live-canvas { --motion-scale: .82; } }
 @media (prefers-reduced-motion: reduce) {
  .typing-motion, .signal-ring, .notification-route { display: none; }
